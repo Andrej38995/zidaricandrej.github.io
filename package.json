@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
-  "homepage": "http://Andrej38995.github.io/zidaricandrej.github.io",
+  "homepage": "https://zidaricandrej.com",
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.10.0",

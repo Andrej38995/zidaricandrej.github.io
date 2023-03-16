@@ -93,7 +93,7 @@ const About = () => {
                         className='
                         mb-6
                         '>
-                            Master of analytical chemitry and a junior in front-end web development. 
+                            Master of analytical chemistry and a junior in front-end web development. 
                             <br />
                             With each passing day, I realize that life is a never-ending journey of learning, 
                             <br />
