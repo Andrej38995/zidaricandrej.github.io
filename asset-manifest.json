@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7d2c9991.css",
+    "main.js": "/static/js/main.569dd0e1.js",
+    "static/media/Video_mag.gif": "/static/media/Video_mag.ac9c00bd84eef326035a.gif",
+    "static/media/Me_1.png": "/static/media/Me_1.93101fe08a7e9148c460.png",
+    "static/media/CryptoChemistryOriginalWebpage.PNG": "/static/media/CryptoChemistryOriginalWebpage.7267f5e631735faf2ccb.PNG",
+    "static/media/projectImg3.png": "/static/media/projectImg3.1a00c1e9adb9bd3884c9.png",
+    "static/media/projectImg2.jpg": "/static/media/projectImg2.3d60825298a78e6b3dbd.jpg",
+    "static/media/projectImg1.png": "/static/media/projectImg1.86fefdc1fbf3a5e6aeea.png",
+    "index.html": "/index.html",
+    "main.7d2c9991.css.map": "/static/css/main.7d2c9991.css.map",
+    "main.569dd0e1.js.map": "/static/js/main.569dd0e1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7d2c9991.css",
+    "static/js/main.569dd0e1.js"
+  ]
+}
