@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Chemistry</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="myscript.js"></script>
+</head>
+
+<body>
+    <!-- HEADER-START -->
+    <div class="Head_Div">
+        <div class="Head_Logo">
+            <img class="Channel_logo" src="images/Website_logo.png">
+        </div>
+        <div class="Head_Text">
+            <p class="Channel_text">Crypto Chemistry</p>
+        </div>
+    </div>
+    <!-- HEADER-END -->
+
+    <!-- NAVBAR-START -->
+    <div class="navbar_div">
+        <div class="navbar_main">
+            <div class="navbar_second">
+                <button class="button_left" onclick="goToPage('index.html')">HOME-PAGE</button>
+                <button class="button_middle_always_active" onclick="goToPage('Bitcoin(BTC).html')">BITCOIN (BTC)</button>
+                <button class="button_middle" onclick="goToPage('ETH/Ethereum(ETH).html')"> ETHEREUM (ETH) </button>
+                <button class="button_middle" onclick="goToPage('ALTS/SOL.html')"> ALTCOINS </button>
+                <button class="button_middle" onclick="goToPage('STOCKS/SP500.html')"> STOCK-MARKET </button>
+                <button class="button_middle" onclick="goToPage('MACRO/US_GDP.html')"> MACRO-ECONOMICS </button>
+                <button class="button_right" onclick="goToPage('SPONSORS/SPONSORS.html')"> SPONSORS </button>
+            </div>
+
+            <div class="navbar_second">
+                <!-- <button class="button_blank"> -----</button> -->
+                <button class="navbar_line"> </button>
+            </div>
+
+            <div class="navbar_second">
+                <button class="button_left" onclick="goToPage('Bitcoin(BTC).html')"> BITCOIN PRICE </button>
+                <button class="button_middle" onclick="goToPage('Logarithmic_Regression.html')">LOGARITHMIC REGRESSION</button>
+                <button class="button_middle_always_active" onclick="goToPage('Total_market_cap_BTC.html')"> TOTAL MARKET CAP </button>
+                <button class="button_middle" onclick="goToPage('Bitcoin_Dominance.html')"> BTC DOMINANCE </button>
+                <button class="button_middle" onclick="goToPage('BTC_On_Chain_Analysis.html')"> ON-CHAIN ANALYSIS </button>
+                <button class="button_middle" onclick="goToPage('BTC_Year_To_Date_ROI.html')"> YEAR-TO-DATE ROI </button>
+                <button class="button_right" onclick="goToPage('BTC_Rainbow_Chart.html')"> RAINBOW CHART </button>
+            </div>
+        </div>
+    </div>
+    <!-- NAVBAR-END -->
+
+    <!-- MAIN-START -->
+    <main>
+        <div class="outside_div">
+            <!-- A black outside border div -->
+            <div class="main_div">
+                <header class="header">
+                    Total Crypto Market Cap
+                </header>
+
+                <div class="description">
+                    The total crypto market cap refers to the combined value of all cryptocurrencies in existence.
+                    <br>
+                    It represents the overall market valuation of the entire cryptocurrency industry at any given point
+                    in time.
+                    <br>
+                    The market cap is calculated by multiplying the circulating supply of a cryptocurrency by its
+                    current market price.
+                </div>
+
+                <!-- TradingView Widget BEGIN -->
+                <div class="chart_div">
+                    <div class="chart">
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "autosize": true,
+                                    "symbol": "CRYPTOCAP:TOTAL",
+                                    "interval": "1D", // range 12M sets interval to "1D"
+                                    "range": "12M", //1D for default (12M sets 1D interval for 1 year on x-axis)
+                                    // "timeframe": "3M", //Set the desired timeframe (x-axis lenght) as absolute value
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "enable_publishing": false,
+                                    "withdateranges": true, //Date rows at the bottom of chart
+                                    "enabled_features": ["hide_resolution_in_legend"],
+                                    "hide_side_toolbar": false,
+                                    "allow_symbol_change": false,
+                                    "save_image": false,
+                                    "details": false, //Right sidebar-1
+                                    "hotlist": false, //Right sidebar-2
+                                    "calendar": false,//Right sidebar-3
+                                    "show_popup_button": false,
+                                    "hidevolume": true, // Hide volume
+                                    "studies": [
+                                        {
+                                            "id": "MASimple@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 20, // 20 on a 1W interval
+                                                "length": 140, // 140 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        },
+                                        {
+                                            "id": "MAExp@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 21, // 21 on a 1W interval
+                                                "length": 147, // 147 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        }
+                                    ],
+                                    "studies_overrides": {
+                                        "moving average.ma.color": "#FF0000", // Red 20W MA
+                                        "moving average.ma.linewidth": 1.5,
+                                        "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                        "moving average exponential.ma.linewidth": 1.5,
+                                    },
+                                }
+                            );
+                        </script>
+                    </div>
+                </div>
+                <!-- TradingView Widget END -->
+
+
+                <div class="navbar_second">
+                    <!-- <button class="button_blank"> -----</button> -->
+                    <button class="navbar_line"> </button>
+                </div>
+
+
+                <header class="header">
+                    Bitcoin Price with Bull Market Support Band
+                </header>
+
+                <div class="description">
+
+                    The chart shows the Bitcoin price with a bull market support band, which includes a 20-week moving
+                    average (MA) and a 21-week exponential moving average (EMA).
+                    <br>
+                </div>
+
+                <!-- TradingView Widget BEGIN -->
+                <div class="chart_div">
+                    <div class="chart">
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "autosize": true,
+                                    "symbol": "INDEX:BTCUSD",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "enable_publishing": false,
+                                    "withdateranges": true,
+                                    "enabled_features": ["hide_resolution_in_legend"],
+                                    "range": "12M",
+                                    "hide_side_toolbar": false,
+                                    "allow_symbol_change": false,
+                                    "save_image": false,
+                                    "details": false,
+                                    "hotlist": false,
+                                    "calendar": false,
+                                    "show_popup_button": false,
+                                    "studies": [
+                                        {
+                                            "id": "MASimple@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 20, // 20 on a 1W interval
+                                                "length": 140, // 140 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        },
+                                        {
+                                            "id": "MAExp@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 21, // 21 on a 1W interval
+                                                "length": 147, // 147 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        }
+                                    ],
+                                    "studies_overrides": {
+                                        "moving average.ma.color": "#FF0000", // Red 20W MA
+                                        "moving average.ma.linewidth": 1.5,
+                                        "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                        "moving average exponential.ma.linewidth": 1.5,
+                                    },
+                                }
+                            );
+                        </script>
+                    </div>
+                </div>
+                <!-- TradingView Widget END -->
+
+                <div class="navbar_second">
+                    <!-- <button class="button_blank"> -----</button> -->
+                    <button class="navbar_line"> </button>
+                </div>
+
+
+                <header class="header">
+                    Total Crypto Market Cap Excluding Bitcoin
+                </header>
+
+                <div class="description">
+                    The total crypto market capitalization excluding Bitcoin refers to the combined value of all
+                    cryptocurrencies in existence, excluding the market value of Bitcoin.
+                    <br>
+                </div>
+
+                <!-- TradingView Widget BEGIN -->
+                <div class="chart_div">
+                    <div class="chart">
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "autosize": true,
+                                    "symbol": "CRYPTOCAP:TOTAL2",
+                                    "interval": "1D",
+                                    "range": "12M",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "enable_publishing": false,
+                                    "withdateranges": true,
+                                    "enabled_features": ["hide_resolution_in_legend"],
+                                    "hide_side_toolbar": false,
+                                    "allow_symbol_change": false,
+                                    "save_image": false,
+                                    "details": false,
+                                    "hotlist": false,
+                                    "calendar": false,
+                                    "show_popup_button": false,
+                                    "hidevolume": true,
+                                    "studies": [
+                                        {
+                                            "id": "MASimple@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 20, // 20 on a 1W interval
+                                                "length": 140, // 140 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        },
+                                        {
+                                            "id": "MAExp@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 21, // 21 on a 1W interval
+                                                "length": 147, // 147 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        }
+                                    ],
+                                    "studies_overrides": {
+                                        "moving average.ma.color": "#FF0000", // Red 20W MA
+                                        "moving average.ma.linewidth": 1.5,
+                                        "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                        "moving average exponential.ma.linewidth": 1.5,
+                                    },
+                                }
+                            );
+                        </script>
+                    </div>
+                </div>
+                <!-- TradingView Widget END -->
+
+                <div class="navbar_second">
+                    <!-- <button class="button_blank"> -----</button> -->
+                    <button class="navbar_line"> </button>
+                </div>
+
+
+                <header class="header">
+                    Total Crypto Market Cap Excluding Bitcoin and Ethereum
+                </header>
+
+                <div class="description">
+                    The total crypto market capitalization excluding Bitcoin and excluding Ethereum refers to the combined value of all
+                    cryptocurrencies in existence, excluding the market value of Bitcoin and market value of Ethereum.
+                    <br>
+                </div>
+
+                <!-- TradingView Widget BEGIN -->
+                <div class="chart_div">
+                    <div class="chart">
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "autosize": true,
+                                    "symbol": "CRYPTOCAP:TOTAL3",
+                                    "interval": "1D",
+                                    "range": "12M",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "enable_publishing": false,
+                                    "withdateranges": true,
+                                    "enabled_features": ["hide_resolution_in_legend"],
+                                    "hide_side_toolbar": false,
+                                    "allow_symbol_change": false,
+                                    "save_image": false,
+                                    "details": false,
+                                    "hotlist": false,
+                                    "calendar": false,
+                                    "show_popup_button": false,
+                                    "hidevolume": true,
+                                    "studies": [
+                                        {
+                                            "id": "MASimple@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 20, // 20 on a 1W interval
+                                                "length": 140, // 140 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        },
+                                        {
+                                            "id": "MAExp@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 21, // 21 on a 1W interval
+                                                "length": 147, // 147 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        }
+                                    ],
+                                    "studies_overrides": {
+                                        "moving average.ma.color": "#FF0000", // Red 20W MA
+                                        "moving average.ma.linewidth": 1.5,
+                                        "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                        "moving average exponential.ma.linewidth": 1.5,
+                                    },
+                                }
+                            );
+                        </script>
+                    </div>
+                </div>
+                <!-- TradingView Widget END -->
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+    </main>
+    <!-- MAIN-END -->
+
+    <!-- FOOTER-START -->
+    <div class="footer">
+        The information and data on Cryptochemistry.net, including tradingview charts, 
+        are for informational purposes only and should not be considered as financial or investment advice.
+        <br>
+        The website author and entity behind Cryptochemistry.net do not endorse, recommend,
+        or guarantee any particular investment strategy, product, service, or provider.
+        <br>
+        The information may not be accurate, complete, timely, or reliable,
+        and users should conduct their own research and seek professional advice.
+        <br>
+        By using Cryptochemistry.net and accessing the information and data presented on this website,
+        users acknowledge and agree to the terms and conditions of this disclaimer.
+
+        <p>
+            Co. Crypto Chemistry - Copyright 2023©
+        </p>
+    </div>
+    <!-- FOOTER-END -->
+</body>
+
+</html>

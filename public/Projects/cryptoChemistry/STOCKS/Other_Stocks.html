@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Chemistry</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../myscript.js"></script>
+</head>
+
+<body>
+    <!-- HEADER-START -->
+    <div class="Head_Div">
+        <div class="Head_Logo">
+            <img class="Channel_logo" src="../images/Website_logo.png">
+        </div>
+        <div class="Head_Text">
+            <p class="Channel_text">Crypto Chemistry</p>
+        </div>
+    </div>
+    <!-- HEADER-END -->
+
+    <!-- NAVBAR-START -->
+    <div class="navbar_div">
+        <div class="navbar_main">
+            <div class="navbar_second">
+                <button class="button_left" onclick="goToPage('../index.html')">HOME-PAGE</button>
+                <button class="button_middle" onclick="goToPage('../Bitcoin(BTC).html')">BITCOIN (BTC)</button>
+                <button class="button_middle" onclick="goToPage('../ETH/Ethereum(ETH).html')"> ETHEREUM (ETH)</button>
+                <button class="button_middle" onclick="goToPage('../ALTS/SOL.html')"> ALTCOINS </button>
+                <button class="button_middle_always_active" onclick="goToPage('SP500.html')"> STOCK-MARKET</button>
+                <button class="button_middle" onclick="goToPage('../MACRO/US_GDP.html')"> MACRO-ECONOMICS</button>
+                <button class="button_right" onclick="goToPage('../SPONSORS/SPONSORS.html')"> SPONSORS</button>
+            </div>
+
+            <div class="navbar_second">
+                <button class="navbar_line"> </button>
+            </div>
+
+            <div class="navbar_second">
+                <button class="button_left" onclick="goToPage('SP500.html')"> US STOCK MARKET </button>
+                <button class="button_middle" onclick="goToPage('NVDA.html')"> NVIDIA </button>
+                <button class="button_middle" onclick="goToPage('APPL.html')"> APPLE </button>
+                <button class="button_middle" onclick="goToPage('MSFT.html')"> MICROSOFT </button>
+                <button class="button_middle" onclick="goToPage('GOOGL.html')"> GOOGLE </button>
+                <button class="button_middle" onclick="goToPage('AMZN.html')"> AMAZON </button>
+                <button class="button_middle" onclick="goToPage('TSLA.html')"> TESLA </button>
+                <button class="button_right_always_active" onclick="goToPage('Other_Stocks.html')"> OTHERS </button>
+            </div>
+        </div>
+    </div>
+    <!-- NAVBAR-END -->
+
+    <!-- MAIN-START -->
+    <main>
+        <div class="outside_div">
+            <!-- A black outside border div -->
+            <div class="main_div">
+                <!-- Two chart section start 1 -->
+                <div style="display: flex;justify-content: space-between; justify-content: center; text-align: center;">
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Intel Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NASDAQ:INTC",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            AMD Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NASDAQ:AMD",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+                <!-- Two chart section end 1 -->
+
+                <div class="navbar_second">
+                    <button class="navbar_line"> </button>
+                </div>
+
+                <!-- Two chart section start 2 -->
+                <div style="display: flex;justify-content: space-between; justify-content: center; text-align: center;">
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Samsung Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "LSIN:SMSN",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Sony Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NYSE:SONY",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+                <!-- Two chart section end 2 -->
+
+                <div class="navbar_second">
+                    <button class="navbar_line"> </button>
+                </div>
+
+                <!-- Two chart section start 3 -->
+                <div style="display: flex;justify-content: space-between; justify-content: center; text-align: center;">
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Meta Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NASDAQ:META",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Netflix Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NASDAQ:NFLX",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+                <!-- Two chart section end 3 -->
+
+                <div class="navbar_second">
+                    <button class="navbar_line"> </button>
+                </div>
+
+                <!-- Two chart section start 4 -->
+                <div style="display: flex;justify-content: space-between; justify-content: center; text-align: center;">
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Visa Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NYSE:V",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Mastercard Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NYSE:MA",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+                <!-- Two chart section end 4 -->
+
+                <div class="navbar_second">
+                    <button class="navbar_line"> </button>
+                </div>
+
+                <!-- Two chart section start 5 -->
+                <div style="display: flex;justify-content: space-between; justify-content: center; text-align: center;">
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Coca-Cola Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NYSE:KO",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            PepsiCo Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NASDAQ:PEP",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+                <!-- Two chart section end 5 -->
+
+                <div class="navbar_second">
+                    <button class="navbar_line"> </button>
+                </div>
+
+                <!-- Two chart section start 6 -->
+                <div style="display: flex;justify-content: space-between; justify-content: center; text-align: center;">
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Adidas Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "XETR:ADS",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Nike Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NYSE:NKE",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+                <!-- Two chart section end 6 -->
+
+                <div class="navbar_second">
+                    <button class="navbar_line"> </button>
+                </div>
+
+                <!-- Two chart section start 7 -->
+                <div style="display: flex;justify-content: space-between; justify-content: center; text-align: center;">
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Qualcomm Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NASDAQ:QCOM",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            TSMC Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NYSE:TSM",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+                <!-- Two chart section end 7 -->
+
+                <div class="navbar_second">
+                    <button class="navbar_line"> </button>
+                </div>
+
+                <!-- Two chart section start 8 -->
+                <div style="display: flex;justify-content: space-between; justify-content: center; text-align: center;">
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            KRKA Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "GPW:KRK*FX_IDC:PLNUSD",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Novartis Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NYSE:NVS",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+                <!-- Two chart section end 8 -->
+
+                <div class="navbar_second">
+                    <button class="navbar_line"> </button>
+                </div>
+
+                <!-- Two chart section start 9 -->
+                <div style="display: flex;justify-content: space-between; justify-content: center; text-align: center;">
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Coinbase Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "GPW:KRK*FX_IDC:PLNUSD",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                    <div style="justify-content: space-between;border: solid 0px #000;width:700px;">
+                        <header class="header" style="text-align: center;">
+                            Adobe Stock
+                        </header>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="chart_div">
+                            <div class="chart" style="width: 650px; height: 402px">
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget(
+                                        {
+                                            "autosize": true,
+                                            "symbol": "NASDAQ:ADBE",
+                                            "timezone": "Etc/UTC",
+                                            "theme": "dark",
+                                            "style": "1",
+                                            "locale": "en",
+                                            "toolbar_bg": "#f1f3f6",
+                                            "enable_publishing": false,
+                                            "withdateranges": false,
+                                            "enabled_features": ["hide_resolution_in_legend"],
+                                            "range": "60M",
+                                            "hide_top_toolbar": false,
+                                            "hide_side_toolbar": true,
+                                            "hide_legend": true,
+                                            "allow_symbol_change": true,
+                                            "save_image": false,
+                                            "details": false,
+                                            "hotlist": false,
+                                            "calendar": false,
+                                            "show_popup_button": false,
+                                            "hidevolume": true,
+                                            "studies": [
+                                                {
+                                                    "id": "MASimple@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 20, // 20 on a 1W interval, 140 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                },
+                                                {
+                                                    "id": "MAExp@tv-basicstudies",
+                                                    "inputs": {
+                                                        "length": 21, // 21 on a 1W interval, 147 on a 1D interval
+                                                        "src": "close"
+                                                    },
+                                                }
+                                            ],
+                                            "studies_overrides": {
+                                                "moving average.ma.color": "#FF0000", // Red 20W MA
+                                                "moving average.ma.linewidth": 1.5,
+                                                "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                                "moving average exponential.ma.linewidth": 1.5,
+                                            },
+                                        }
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+                </div>
+                <!-- Two chart section end 9 -->
+
+            <!-- DIV-END -->
+            </div>
+        </div>
+
+    </main>
+    <!-- MAIN-END -->
+
+    <!-- FOOTER-START -->
+    <div class="footer">
+            The information and data on Cryptochemistry.net, including tradingview charts, 
+            are for informational purposes only and should not be considered as financial or investment advice.
+        <br>
+            The website author and entity behind Cryptochemistry.net do not endorse, recommend, 
+            or guarantee any particular investment strategy, product, service, or provider.
+        <br>
+            The information may not be accurate, complete, timely, or reliable, 
+            and users should conduct their own research and seek professional advice.
+        <br>
+            By using Cryptochemistry.net and accessing the information and data presented on this website, 
+            users acknowledge and agree to the terms and conditions of this disclaimer.
+
+        <p>
+            Co. Crypto Chemistry - Copyright 2023©
+        </p>
+    </div>
+    <!-- FOOTER-END -->
+</body>
+</html>
