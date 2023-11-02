@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Zidaricandrej.com/Projects/zidaricandrejOriginal/build/static/css/main.95214b94.css",
+    "main.js": "/Zidaricandrej.com/Projects/zidaricandrejOriginal/build/static/js/main.bad2a2f1.js",
+    "static/media/Video_mag.gif": "/Zidaricandrej.com/Projects/zidaricandrejOriginal/build/static/media/Video_mag.ac9c00bd84eef326035a.gif",
+    "static/media/Me_1.png": "/Zidaricandrej.com/Projects/zidaricandrejOriginal/build/static/media/Me_1.93101fe08a7e9148c460.png",
+    "static/media/Crypto_Chemistry_Website_logo.png": "/Zidaricandrej.com/Projects/zidaricandrejOriginal/build/static/media/Crypto_Chemistry_Website_logo.faf4c2e7cb8115830f8c.png",
+    "index.html": "/Zidaricandrej.com/Projects/zidaricandrejOriginal/build/index.html",
+    "main.95214b94.css.map": "/Zidaricandrej.com/Projects/zidaricandrejOriginal/build/static/css/main.95214b94.css.map",
+    "main.bad2a2f1.js.map": "/Zidaricandrej.com/Projects/zidaricandrejOriginal/build/static/js/main.bad2a2f1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.95214b94.css",
+    "static/js/main.bad2a2f1.js"
+  ]
+}
