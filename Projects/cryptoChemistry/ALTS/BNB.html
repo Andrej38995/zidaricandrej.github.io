@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Chemistry</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../myscript.js"></script>
+</head>
+
+<body>
+    <!-- HEADER-START -->
+    <div class="Head_Div">
+        <div class="Head_Logo">
+            <img class="Channel_logo" src="../images/Website_logo.png">
+        </div>
+        <div class="Head_Text">
+            <p class="Channel_text">Crypto Chemistry</p>
+        </div>
+    </div>
+    <!-- HEADER-END -->
+
+    <!-- NAVBAR-START -->
+    <div class="navbar_div">
+        <div class="navbar_main">
+            <div class="navbar_second">
+                <button class="button_left" onclick="goToPage('../index.html')">HOME-PAGE</button>
+                <button class="button_middle" onclick="goToPage('../Bitcoin(BTC).html')">BITCOIN (BTC)</button>
+                <button class="button_middle" onclick="goToPage('../ETH/Ethereum(ETH).html')"> ETHEREUM (ETH)</button>
+                <button class="button_middle_always_active" onclick="goToPage('SOL.html')"> ALTCOINS </button>
+                <button class="button_middle"  onclick="goToPage('../STOCKS/SP500.html')"> STOCK-MARKET</button>
+                <button class="button_middle" onclick="goToPage('../MACRO/US_GDP.html')"> MACRO-ECONOMICS</button>
+                <button class="button_right" onclick="goToPage('../SPONSORS/SPONSORS.html')"> SPONSORS</button>
+            </div>
+
+            <div class="navbar_second">
+                <!-- <button class="button_blank"> -----</button> -->
+                <button class="navbar_line"> </button>
+            </div>
+
+            <div class="navbar_second">
+                <button class="button_left" onclick="goToPage('SOL.html')"> SOLANA (SOL) </button>
+                <button class="button_middle" onclick="goToPage('FTM.html')">FANTOM (FTM)</button>
+                <button class="button_middle" onclick="goToPage('ADA.html')"> CARDANO (ADA) </button>
+                <button class="button_middle_always_active" onclick="goToPage('BNB.html')"> BINANCE COIN (BNB) </button>
+                <button class="button_middle" onclick="goToPage('MATIC.html')"> POLYGON (MATIC)</button>
+                <button class="button_middle" onclick="goToPage('DOGE.html')"> DOGECOIN (DOGE) </button>
+                <button class="button_right" onclick="goToPage('Other_Alts.html')"> OTHERS </button>
+            </div>
+        </div>
+    </div>
+    <!-- NAVBAR-END -->
+
+    <!-- MAIN-START -->
+    <main>
+        <div class="outside_div">
+            <!-- A black outside border div -->
+            <div class="main_div">
+                <header class="header">
+                    Binance Coin Price ($)
+                </header>
+
+                <div class="description">
+                    The graph illustrating the fluctuations in the value of Binance Coin (BNB) 
+                    against the US dollar over a 12-month period with bull market support band.
+                    <br>
+                </div>
+
+                <!-- TradingView Widget BEGIN -->
+                <div class="chart_div">
+                    <div class="chart">
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "autosize": true,
+                                    "symbol": "CRYPTO:BNBUSD",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "enable_publishing": false,
+                                    "withdateranges": true,
+                                    "enabled_features": ["hide_resolution_in_legend"],
+                                    "range": "12M",
+                                    "hide_side_toolbar": false,
+                                    "allow_symbol_change": false,
+                                    "save_image": false,
+                                    "details": false,
+                                    "hotlist": false,
+                                    "calendar": false,
+                                    "show_popup_button": false,
+                                    "studies": [
+                                        {
+                                            "id": "MASimple@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 20, // 20 on a 1W interval
+                                                "length": 140, // 140 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        },
+                                        {
+                                            "id": "MAExp@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 21, // 21 on a 1W interval
+                                                "length": 147, // 147 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        }
+                                    ],
+                                    "studies_overrides": {
+                                        "moving average.ma.color": "#FF0000", // Red 20W MA
+                                        "moving average.ma.linewidth": 1.5,
+                                        "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                        "moving average exponential.ma.linewidth": 1.5,
+                                    },
+                                }
+                            );
+                        </script>
+                    </div>
+                </div>
+                <!-- TradingView Widget END -->
+
+                <div class="navbar_second">
+                    <button class="navbar_line"> </button>
+                </div>
+
+
+                <header class="header">
+                    BNB/ETH Valuation
+                </header>
+
+                <div class="description">
+                    The valuation of BNB/ETH refers to the assessment of the relative worth or value of the Binance Coin (BNB) cryptocurrency compared to Ethereum (ETH) cryptocurrency.
+                    <br>
+                </div>
+
+                <!-- TradingView Widget BEGIN -->
+                <div class="chart_div">
+                    <div class="chart">
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "autosize": true,
+                                    "symbol": "CRYPTO:BNBUSD/INDEX:ETHUSD",
+                                    "interval": "1W", // range 12M sets interval to "1D"
+                                    "range": "60M", //1D for default (12M sets 1D interval for 1 year on x-axis)
+                                    // "timeframe": "3M", //Set the desired timeframe (x-axis lenght) as absolute value
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "enable_publishing": false,
+                                    "withdateranges": true, //Date rows at the bottom of chart
+                                    "enabled_features": ["hide_resolution_in_legend"],
+                                    "hide_side_toolbar": false,
+                                    "allow_symbol_change": false,
+                                    "save_image": false,
+                                    "details": false, //Right sidebar-1
+                                    "hotlist": false, //Right sidebar-2
+                                    "calendar": false,//Right sidebar-3
+                                    "show_popup_button": false,
+                                    "hidevolume": true, // Hide volume
+                                    "studies": [
+                                        {
+                                            "id": "MASimple@tv-basicstudies",
+                                            "inputs": {
+                                                "length": 20, // 20 on a 1W interval
+                                                // "length": 140, // 140 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        },
+                                        {
+                                            "id": "MAExp@tv-basicstudies",
+                                            "inputs": {
+                                                "length": 21, // 21 on a 1W interval
+                                                // "length": 147, // 147 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        }
+                                    ],
+                                    "studies_overrides": {
+                                        "moving average.ma.color": "#FF0000", // Red 20W MA
+                                        "moving average.ma.linewidth": 1.5,
+                                        "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                        "moving average exponential.ma.linewidth": 1.5,
+                                    },
+                                }
+                            );
+                        </script>
+                    </div>
+                </div>
+                <!-- TradingView Widget END -->
+
+                <div class="navbar_second">
+                    <button class="navbar_line"> </button>
+                </div>
+
+
+                <header class="header">
+                    BNB/BTC Valuation
+                </header>
+
+                <div class="description">
+                    The valuation of BNB/BTC refers to the assessment of the relative worth or value of the Binance Coin (BNB) cryptocurrency compared to Bitcoin (BTC) cryptocurrency.
+                    <br>
+                </div>
+
+                <!-- TradingView Widget BEGIN -->
+                <div class="chart_div">
+                    <div class="chart">
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "autosize": true,
+                                    "symbol": "CRYPTO:BNBUSD/INDEX:BTCUSD",
+                                    "interval": "1W", // range 12M sets interval to "1D"
+                                    "range": "60M", //1D for default (12M sets 1D interval for 1 year on x-axis)
+                                    // "timeframe": "3M", //Set the desired timeframe (x-axis lenght) as absolute value
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "enable_publishing": false,
+                                    "withdateranges": true, //Date rows at the bottom of chart
+                                    "enabled_features": ["hide_resolution_in_legend"],
+                                    "hide_side_toolbar": false,
+                                    "allow_symbol_change": false,
+                                    "save_image": false,
+                                    "details": false, //Right sidebar-1
+                                    "hotlist": false, //Right sidebar-2
+                                    "calendar": false,//Right sidebar-3
+                                    "show_popup_button": false,
+                                    "hidevolume": true, // Hide volume
+                                    "studies": [
+                                        {
+                                            "id": "MASimple@tv-basicstudies",
+                                            "inputs": {
+                                                "length": 20, // 20 on a 1W interval
+                                                // "length": 140, // 140 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        },
+                                        {
+                                            "id": "MAExp@tv-basicstudies",
+                                            "inputs": {
+                                                "length": 21, // 21 on a 1W interval
+                                                // "length": 147, // 147 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        }
+                                    ],
+                                    "studies_overrides": {
+                                        "moving average.ma.color": "#FF0000", // Red 20W MA
+                                        "moving average.ma.linewidth": 1.5,
+                                        "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                        "moving average exponential.ma.linewidth": 1.5,
+                                    },
+                                }
+                            );
+                        </script>
+                    </div>
+                </div>
+                <!-- TradingView Widget END -->
+
+                <div class="navbar_second">
+                    <button class="navbar_line"> </button>
+                </div>
+
+                <header class="header">
+                    Binance Coin Market Cap
+                </header>
+
+                <div class="description">
+                    Binance Coin Market Capitalization, is a financial metric that represents the total value of all Binance Coin (BNB) tokens in circulation.
+                    <br>
+                    It is calculated by multiplying the current price of Fantom by the total supply of BNB tokens.
+                </div>
+
+                
+                <!-- TradingView Widget BEGIN -->
+                <div class="chart_div">
+                    <div class="chart">
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "autosize": true,
+                                    "symbol": "CRYPTOCAP:BNB",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "enable_publishing": false,
+                                    "withdateranges": true,
+                                    "enabled_features": ["hide_resolution_in_legend"],
+                                    "range": "12M",
+                                    "hide_side_toolbar": false,
+                                    "allow_symbol_change": false,
+                                    "save_image": false,
+                                    "details": false,
+                                    "hotlist": false,
+                                    "calendar": false,
+                                    "show_popup_button": false,
+                                    "hidevolume": true, // Hide volume
+                                    "studies": [
+                                        {
+                                            "id": "MASimple@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 20, // 20 on a 1W interval
+                                                "length": 140, // 140 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        },
+                                        {
+                                            "id": "MAExp@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 21, // 21 on a 1W interval
+                                                "length": 147, // 147 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        }
+                                    ],
+                                    "studies_overrides": {
+                                        "moving average.ma.color": "#FF0000", // Red 20W MA
+                                        "moving average.ma.linewidth": 1.5,
+                                        "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                        "moving average exponential.ma.linewidth": 1.5,
+                                    },
+                                }
+                            );
+                        </script>
+                    </div>
+                </div>
+                <!-- TradingView Widget END -->
+
+                <div class="navbar_second">
+                    <button class="navbar_line"> </button>
+                </div>
+
+                <header class="header">
+                    Binance Coin Price (€)
+                </header>
+
+                <div class="description">
+                    The graph illustrating the fluctuations in the value of Binance Coin (BNB) 
+                    against the Euro over a 12-month period with bull market support band.
+                    <br>
+                </div>
+
+                <!-- TradingView Widget BEGIN -->
+                <div class="chart_div">
+                    <div class="chart">
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "autosize": true,
+                                    "symbol": "BINANCE:BNBEUR",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "enable_publishing": false,
+                                    "withdateranges": true,
+                                    "enabled_features": ["hide_resolution_in_legend"],
+                                    "range": "12M",
+                                    "hide_side_toolbar": false,
+                                    "allow_symbol_change": false,
+                                    "save_image": false,
+                                    "details": false,
+                                    "hotlist": false,
+                                    "calendar": false,
+                                    "show_popup_button": false,
+                                    "studies": [
+                                        {
+                                            "id": "MASimple@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 20, // 20 on a 1W interval
+                                                "length": 140, // 140 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        },
+                                        {
+                                            "id": "MAExp@tv-basicstudies",
+                                            "inputs": {
+                                                // "length": 21, // 21 on a 1W interval
+                                                "length": 147, // 147 on a 1D interval
+                                                "src": "close"
+                                            },
+                                        }
+                                    ],
+                                    "studies_overrides": {
+                                        "moving average.ma.color": "#FF0000", // Red 20W MA
+                                        "moving average.ma.linewidth": 1.5,
+                                        "moving average exponential.ma.color": "#00FF00", // Green 21W EMA
+                                        "moving average exponential.ma.linewidth": 1.5,
+                                    },
+                                }
+                            );
+                        </script>
+                    </div>
+                </div>
+                <!-- TradingView Widget END -->
+
+            </div>
+        </div>
+
+    </main>
+    <!-- MAIN-END -->
+
+    <!-- FOOTER-START -->
+    <div class="footer">
+            The information and data on Cryptochemistry.net, including tradingview charts, 
+            are for informational purposes only and should not be considered as financial or investment advice.
+        <br>
+            The website author and entity behind Cryptochemistry.net do not endorse, recommend, 
+            or guarantee any particular investment strategy, product, service, or provider.
+        <br>
+            The information may not be accurate, complete, timely, or reliable, 
+            and users should conduct their own research and seek professional advice.
+        <br>
+            By using Cryptochemistry.net and accessing the information and data presented on this website, 
+            users acknowledge and agree to the terms and conditions of this disclaimer.
+
+        <p>
+            Co. Crypto Chemistry - Copyright 2023©
+        </p>
+    </div>
+    <!-- FOOTER-END -->
+</body>
+</html>

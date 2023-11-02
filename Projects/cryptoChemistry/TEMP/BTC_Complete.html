@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTC Logarithmic Regression</title>
+
+    <style>
+        .line {
+            fill: none;
+        }
+
+        body {
+            background-color: #111827;
+        }
+    </style>
+</head>
+
+<body>
+    <svg id="chart" height="650" width="1150" , style="border: solid 1px #000; margin-top: 10px ; padding-top: 15px">
+        <g id="body" transform="translate(50,50)"></g>
+        <g id="xAxis"></g>
+        <g id="yAxis"></g>
+    </svg>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- <script src="d3.js"></script> -->
+
+    <script>
+        // Loading CSV file
+        Promise.all([
+            d3.csv("BTC-CSV.csv"),
+            d3.csv("LR_CSV.csv")
+        ]).then(showData).catch(error => {
+            console.error("Error loading CSV files:", error);
+        });
+        // ----------------------------------
+
+        // ShowData function
+        function showData(data) {
+            let body = d3.select("#body")
+            let bodyHeight = 487
+            let bodyWidth = 1034
+            // ----------------------------------
+
+            // Parsing BTC data
+            let btcData = data[0].map(d => ({
+                date: d3.timeParse("%d.%m.%Y")(d.Date),
+                price: +d.Close
+            }));
+
+            // Parsing LR_CSV data
+            let LR_Data = data[1].map(d => ({
+                date_BC: d3.timeParse("%d.%m.%Y")(d.BC_Date),
+                price_BC_BUB: +d.BC_BUB,
+                price_BC_BLB: +d.BC_BLB,
+                price_BC_NBU: +d.BC_NBU,
+                price_BC_NBF: +d.BC_NBF,
+                price_BC_NBL: +d.BC_NBL,
+                price_BUB: +d.BUB,
+                price_BLB: +d.BLB,
+                price_NBU: +d.NBU,
+                price_NBF: +d.NBF,
+                price_NBL: +d.NBL
+            }));
+            // BC_Date,BC_BUB,BC_BLB,BC_NBU,BC_NBF,BC_NBL,BUB,BLB,NBU,NBF,NBL
+            // 20.07.2010,8.61,6.36,0.1,0.0738,0.0545,1.7,1.246824601,0.011561207,0,0.006493848
+            // ----------------------------------
+
+            // ----------------------------------
+            // CREATE X AND Y AXIS
+            // ----------------------------------
+
+            // Caluclate minimum and maximum value of both axis
+            let maxValue_BTC = d3.max(btcData, d => d.price);
+            console.log(maxValue_BTC)   // 67541.7555 $
+            let minValue_BTC = d3.min(btcData, d => d.price);
+            console.log(minValue_BTC)   // 0.0505 $
+            let maxValue_BC_BUB = d3.max(LR_Data, d => d.price_BC_BUB);
+            console.log(maxValue_BC_BUB)   // 341490 $
+            let minValue_BC_BUB = d3.min(LR_Data, d => d.price_BC_BUB);
+            console.log(minValue_BC_BUB)   // 8.61 $
+            let minValue_price_BC_NBL = d3.min(LR_Data, d => d.price_BC_NBL);
+            console.log(minValue_price_BC_NBL)   // 0.0545 $
+            // ----------------------------------
+            let topValue = 10E5 + 1
+            let bottomValue = (minValue_BTC - minValue_BTC * 0.5) // 0.5 -> 0.02525
+            // ----------------------------------
+            let maxDate_BTC = d3.max(btcData, d => d.date);
+            let minDate_BTC = d3.min(btcData, d => d.date);
+            let endDate_LR = d3.max(LR_Data, d => d.date_BC);
+            // console.log(maxDate_BTC)   // Mon May 01 2023
+            // console.log(minDate_BTC)   // Sun Jul 18 2010
+            // console.log(endDate_LR)    // Wed Jan 01 2025
+
+            // Add logarithmic Y axis
+            let yScale = d3.scaleLog()
+                .domain([bottomValue, topValue])
+                .range([bodyHeight, 0])
+
+            // Define an array of major tick values
+            let majorTickValues = d3.range(Math.floor(Math.log10(0.1)), Math.ceil(Math.log10(topValue)), 1).map(d => Math.pow(10, d));
+            // console.log(majorTickValues): (8) [0.1, 1, 10, 100, 1000, 10000, 100000, 1000000]
+
+            body.append("g")
+                .attr("class", "y-axis")
+                .call(d3.axisLeft(yScale)
+                    .tickValues(majorTickValues)
+                    .tickSize(-bodyWidth)
+                )
+
+            // Add X axis, it is a date format
+            let xScale = d3.scaleTime()
+                // .domain(d3.extent(data, d => d.date)) //Deafult domain
+                .domain([new Date("2009-12-31"), new Date("2026-01-01")])
+                .range([0, bodyWidth]);
+            body.append("g")
+                .attr("class", "x-axis")
+                .attr("transform", "translate(0, " + bodyHeight + ")")
+                .call(d3.axisBottom(xScale)
+                    .ticks(d3.timeYear.every(2))
+                )
+
+            // ----------------------------------
+            // STYLE Y AXIS
+            // ----------------------------------
+
+            // Style Y-axis text
+            d3.select(".y-axis")
+                .selectAll(".tick text")
+                .style("color", "white")
+                .style("font-size", "11px")
+                .style("font-style", "Helveca, Arial, sans-serif")
+
+            // Style main Y-axis
+            d3.select(".y-axis")
+                .selectAll(".domain")
+                .style("stroke-opacity", 0)
+
+            // Style tick lines
+            d3.select(".y-axis")
+                .selectAll(".tick line")
+                .style("stroke", "#EDF2F7")
+                .style("stroke-opacity", 0.069)
+
+            // ----------------------------------
+            // STYLE X AXIS
+            // ----------------------------------
+
+            // Style X-axis text
+            d3.select(".x-axis")
+                .selectAll(".tick text")
+                .style("font-weight", "normal")
+                .style("color", "white")
+                .style("font-size", "11px")
+                .style("font-style", "Helveca, Arial, sans-serif")
+
+            // Style main X-axis
+            d3.select(".x-axis")
+                .selectAll(".domain")
+                .style("color", "white")
+                .style("opacity", 0.69)
+
+            // Style tick lines
+            d3.select(".x-axis")
+                .selectAll(".tick line")
+                .style("color", "white")
+                .style("opacity", 0.69)
+            // ----------------------------------
+
+            // ----------------------------------
+            // VALUELINE - BTC
+            // ----------------------------------
+
+            // Define valueline function for BTC
+            let valueline_BTC = d3.line()
+                .x(d => xScale(d.date))
+                .y(d => yScale(d.price))
+                .defined(d => !isNaN(d.price))
+                .curve(d3.curveCatmullRom)
+
+            // Draw the line
+            body.append("path")
+                .attr("class", "line_BTC")
+                .attr("d", valueline_BTC(btcData))
+                // .datum(btcData)
+                .style("stroke", "#0066c8") // Navy blue
+                .attr("stroke-width", 1.25)
+                .style("fill", "none")
+
+            // ----------------------------------
+            // VALUELINE - BC_BUB
+            // ----------------------------------
+
+            // Define valueline function for price_BC_BUB
+            let valueline_BC_BUB = d3.line()
+                .x(d => xScale(d.date_BC))
+                .y(d => yScale(d.price_BC_BUB))
+                .defined(d => !isNaN(d.price_BC_BUB))
+                .curve(d3.curveCatmullRom)
+
+            // Draw the line
+            body.append("path")
+                .attr("class", "line_BC_BUB")
+                .attr("d", valueline_BC_BUB(LR_Data))
+                .datum(btcData)
+                // .style("stroke", "red")
+                .style("stroke", "#FF0000")
+                // .style("stroke", "#DF0000")
+                .attr("stroke-width", 1.00)
+                .style("fill", "none")
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
+                .style("opacity", 0.69)
+
+            // ----------------------------------
+            // VALUELINE - BC_BLB
+            // ----------------------------------
+
+            // Define valueline function for price_BC_BUB
+            let valueline_BC_BLB = d3.line()
+                .x(d => xScale(d.date_BC))
+                .y(d => yScale(d.price_BC_BLB))
+                .defined(d => !isNaN(d.price_BC_BLB))
+                .curve(d3.curveCatmullRom)
+
+            // Draw the line
+            body.append("path")
+                .attr("class", "line_BC_BLB")
+                .attr("d", valueline_BC_BLB(LR_Data))
+                .datum(btcData)
+                // .style("stroke", "#ff5656")
+                .style("stroke", "#800000")
+                .attr("stroke-width", 1.00)
+                .style("fill", "none")
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
+                .style("opacity", 0.69)
+
+            // ----------------------------------
+            // VALUELINE - BC_NBU
+            // ----------------------------------
+
+            // Define valueline function for price_BC_NBU
+            let valueline_BC_NBU = d3.line()
+                .x(d => xScale(d.date_BC))
+                .y(d => yScale(d.price_BC_NBU))
+                .defined(d => !isNaN(d.price_BC_NBU))
+                .curve(d3.curveCatmullRom)
+
+            // Draw the line
+            body.append("path")
+                .attr("class", "line_BC_NBU")
+                .attr("d", valueline_BC_NBU(LR_Data))
+                .datum(btcData)
+                .style("stroke", "#006400")
+                .attr("stroke-width", 1.00)
+                .style("fill", "none")
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
+                .style("opacity", 0.69)
+
+            // ----------------------------------
+            // VALUELINE - BC_NBF
+            // ----------------------------------
+
+            // Define valueline function for price_BC_NBF
+            let valueline_BC_NBF = d3.line()
+                .x(d => xScale(d.date_BC))
+                .y(d => yScale(d.price_BC_NBF))
+                .defined(d => !isNaN(d.price_BC_NBF))
+                .curve(d3.curveCatmullRom)
+
+            // Draw the line
+            body.append("path")
+                .attr("class", "line_BC_NBF")
+                .attr("d", valueline_BC_NBF(LR_Data))
+                .datum(btcData)
+                .style("stroke", "#008000")
+                .attr("stroke-width", 1.00)
+                .style("fill", "none")
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
+                .style("opacity", 0.69)
+
+            // ----------------------------------
+            // VALUELINE - BC_NBL
+            // ----------------------------------
+
+            // Define valueline function for price_BC_NBL
+            let valueline_BC_NBL = d3.line()
+                .x(d => xScale(d.date_BC))
+                .y(d => yScale(d.price_BC_NBL))
+                .defined(d => !isNaN(d.price_BC_NBL))
+                .curve(d3.curveCatmullRom)
+
+            // Draw the line
+            body.append("path")
+                .attr("class", "line_BC_NBL")
+                .attr("d", valueline_BC_NBL(LR_Data))
+                .datum(btcData)
+                .style("stroke", "#00FF00")
+                .attr("stroke-width", 1.00)
+                .style("fill", "none")
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
+                .style("opacity", 0.69)
+
+            // ----------------------------------
+            // ADD CHART TITLE AND X/Y AXIS.
+            // ----------------------------------
+
+            // Add chart title
+            body.append("text")
+                .attr("class", "chart-title")
+                .attr("x", 0)
+                .attr("y", -30)
+                .text("BTC Logarithmic Regression Bands")
+                .style("fill", "white")
+                .style("font-size", "24px")
+                .style("font-weight", "bold")
+                .style("font-style", "Helveca, Arial, sans-serif")
+
+            // Add Y axis title
+            body.append("text")
+                .attr("class", "y-axis-title")
+                .attr("x", - bodyHeight / 2)
+                .attr("y", -35)
+                .attr("transform", "rotate(-90)")
+                .text("Price ($)")
+                .style("fill", "white")
+                .style("font-size", "12.8px")
+                .style("font-weight", "bold")
+                .style("font-style", "Helveca, Arial, sans-serif")
+
+            // Add X axis title
+            body.append("text")
+                .attr("class", "x-axis-title")
+                .attr("x", bodyWidth / 2 - 12.8)
+                .attr("y", bodyHeight + 35)
+                .text("Date")
+                .style("fill", "white")
+                .style("font-size", "12.8px")
+                .style("font-weight", "bold")
+                .style("font-style", "Helveca, Arial, sans-serif")
+
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+
+            // ----------------------------------
+            // ADD LEGEND TO THE CHART
+            // ----------------------------------
+
+            // Adding a legend to the graph
+            let legend = body.append("g")
+                .attr("class", "legend")
+                .attr("transform", "translate(" + 0 + "," + (bodyHeight + 30) + ")")
+                .style("font-size", "12px")
+
+            // Adding "Legend:" text to the legend
+            legend.append("text")
+                .attr("x", 0)
+                .attr("y", 30)
+                .text("Legend:")
+                .style("font-weight", "bold")
+                .style("fill", "white")
+
+            const temp = document.createElement("span");
+            temp.textContent = "Legend:";
+            document.body.appendChild(temp);
+            const width_1 = temp.getBoundingClientRect().width;
+            document.body.removeChild(temp);
+            console.log(width_1);
+
+            // ----------------------------------
+            // ADD LINE-CIRCLE-TOOLTIP LISTENERS TO LEGEND
+            // ----------------------------------
+
+            const addToggleFunctionality = (lineSelector, circleSelector, tooltipSelector) => {
+                const line = d3.select(lineSelector);
+                const circle = d3.select(circleSelector);
+                const tooltip = d3.select(tooltipSelector);
+
+                if (line.style("display") === "none") {
+                    line.style("display", "block");
+                    circle.style("display", "block");
+                    tooltip.style("display", "block");
+                } else {
+                    line.style("display", "none");
+                    circle.style("display", "none");
+                    tooltip.style("display", "none");
+                }
+            };
+
+            // ----------------------------------
+            // ADD LEGEND LISTENERS
+            // ----------------------------------
+
+            // Joining the two click functions
+            function handleClick_BTC() {
+                addToggleFunctionality(".line_BTC", ".circle_BTC", ".tooltip_BTC");
+
+                let isGreyedOut_BTC = d3.select(this).classed("greyed-out_BTC");
+
+                if (isGreyedOut_BTC) {
+                    // Restore original brightness
+                    d3.selectAll(".toggle-element_BTC")
+                        .classed("greyed-out_BTC", false)
+                        .style("fill", "white")
+                        .style("opacity", 1);
+                } else {
+                    // Grey out both elements
+                    d3.selectAll(".toggle-element_BTC")
+                        .classed("greyed-out_BTC", true)
+                        .style("fill", "rgba(255, 255, 255)") // Darken the text color
+                        .style("opacity", 0.3); // Reduce the opacity of the text
+                }
+            }
+
+            legend.append("rect")
+                .attr("x", width_1)
+                .attr("y", 25.5)
+                .attr("width", 30)
+                .attr("height", 1)
+                .style("stroke", "#0066c8")
+                .style("stroke-width", 2)
+                .style("fill", "none")
+                .style("cursor", "pointer")
+                .classed("toggle-element_BTC", true)
+                .on("click", handleClick_BTC);
+
+            legend.append("text")
+                .attr("x", width_1 + 40)
+                .attr("y", 30)
+                .text("BTC Price")
+                .style("font-size", "12px")
+                .style("font-weight", "bold")
+                .style("fill", "white")
+                .style("cursor", "pointer")
+                .classed("toggle-element_BTC", true)
+                .on("click", handleClick_BTC);
+
+
+            // ----------------------------------
+            // ADD BC_BUB TO LEGEND
+            // ----------------------------------
+
+            function handleClick_BUB() {
+                addToggleFunctionality(".line_BC_BUB", ".circle_BC_BUB", ".tooltip_BC_BUB");
+
+                let isGreyedOut_BUB = d3.select(this).classed("greyed-out_BUB");
+
+                if (isGreyedOut_BUB) {
+                    // Restore original brightness
+                    d3.selectAll(".toggle-element_BUB")
+                        .classed("greyed-out_BUB", false)
+                        .style("fill", "white")
+                        .style("opacity", 1);
+
+                } else {
+                    // Grey out both elements
+                    d3.selectAll(".toggle-element_BUB")
+                        .classed("greyed-out_BUB", true)
+                        .style("fill", "rgba(255, 255, 255)")
+                        .style("opacity", 0.3);
+                }
+            }
+
+            legend.append("rect")
+                .attr("x", width_1 + 110)
+                .attr("y", 25.5)
+                .attr("width", 30)
+                .attr("height", 1)
+                .style("stroke", "#FF0000")
+                .style("stroke-width", 2)
+                .style("fill", "none")
+                .style("cursor", "pointer")
+                .classed("toggle-element_BUB", true)
+                .on("click", handleClick_BUB);
+
+            legend.append("text")
+                .attr("x", width_1 + 150)
+                .attr("y", 30)
+                .text("BUB")
+                .style("font-size", "12px")
+                .style("font-weight", "bold")
+                .style("fill", "white")
+                .style("cursor", "pointer")
+                .classed("toggle-element_BUB", true)
+                .on("click", handleClick_BUB);
+
+            // ----------------------------------
+            // ADD BC_BLB TO LEGEND
+            // ----------------------------------
+
+            function handleClick_BLB() {
+                addToggleFunctionality(".line_BC_BLB", ".circle_BC_BLB", ".tooltip_BC_BLB");
+
+                let isGreyedOut_BLB = d3.select(this).classed("greyed-out_BLB");
+
+                if (isGreyedOut_BLB) {
+                    // Restore original brightness
+                    d3.selectAll(".toggle-element_BLB")
+                        .classed("greyed-out_BLB", false)
+                        .style("fill", "white")
+                        .style("opacity", 1);
+                } else {
+                    // Grey out both elements
+                    d3.selectAll(".toggle-element_BLB")
+                        .classed("greyed-out_BLB", true)
+                        .style("fill", "rgba(255, 255, 255)")
+                        .style("opacity", 0.3);
+                }
+            }
+
+            legend.append("rect")
+                .attr("x", width_1 + 190)
+                .attr("y", 25.5)
+                .attr("width", 30)
+                .attr("height", 1)
+                .style("stroke", "#800000")
+                .style("stroke-width", 2)
+                .style("fill", "none")
+                .style("cursor", "pointer")
+                .classed("toggle-element_BLB", true)
+                .on("click", handleClick_BLB);
+
+            legend.append("text")
+                .attr("x", width_1 + 230)
+                .attr("y", 30)
+                .text("BLB")
+                .style("font-size", "12px")
+                .style("font-weight", "bold")
+                .style("fill", "white")
+                .style("cursor", "pointer")
+                .classed("toggle-element_BLB", true)
+                .on("click", handleClick_BLB);
+
+            // ----------------------------------
+            // ADD BC_NBU TO LEGEND
+            // ----------------------------------
+
+            function handleClick_NBU() {
+                addToggleFunctionality(".line_BC_NBU", ".circle_BC_NBU", ".tooltip_BC_NBU");
+
+                let isGreyedOut_NBU = d3.select(this).classed("greyed-out_NBU");
+
+                if (isGreyedOut_NBU) {
+                    // Restore original brightness
+                    d3.selectAll(".toggle-element_NBU")
+                        .classed("greyed-out_NBU", false)
+                        .style("fill", "white")
+                        .style("opacity", 1);
+                } else {
+                    // Grey out both elements
+                    d3.selectAll(".toggle-element_NBU")
+                        .classed("greyed-out_NBU", true)
+                        .style("fill", "rgba(255, 255, 255)")
+                        .style("opacity", 0.3);
+                }
+            }
+
+            legend.append("rect")
+                .attr("x", width_1 + 270)
+                .attr("y", 25.5)
+                .attr("width", 30)
+                .attr("height", 1)
+                .style("stroke", "#006400")
+                .style("stroke-width", 2)
+                .style("fill", "none")
+                .style("cursor", "pointer")
+                .classed("toggle-element_NBU", true)
+                .on("click", handleClick_NBU);
+
+            legend.append("text")
+                .attr("x", width_1 + 310)
+                .attr("y", 30)
+                .text("NBU")
+                .style("font-size", "12px")
+                .style("font-weight", "bold")
+                .style("fill", "white")
+                .style("cursor", "pointer")
+                .classed("toggle-element_NBU", true)
+                .on("click", handleClick_NBU);
+
+            // ----------------------------------
+            // ADD BC_NBF TO LEGEND
+            // ----------------------------------
+
+            function handleClick_NBF() {
+                addToggleFunctionality(".line_BC_NBF", ".circle_BC_NBF", ".tooltip_BC_NBF");
+
+                let isGreyedOut_NBF = d3.select(this).classed("greyed-out_NBF");
+
+                if (isGreyedOut_NBF) {
+                    // Restore original brightness
+                    d3.selectAll(".toggle-element_NBF")
+                        .classed("greyed-out_NBF", false)
+                        .style("fill", "white")
+                        .style("opacity", 1);
+                } else {
+                    // Grey out both elements
+                    d3.selectAll(".toggle-element_NBF")
+                        .classed("greyed-out_NBF", true)
+                        .style("fill", "rgba(255, 255, 255)")
+                        .style("opacity", 0.3);
+                }
+            }
+
+            legend.append("rect")
+                .attr("x", width_1 + 350)
+                .attr("y", 25.5)
+                .attr("width", 30)
+                .attr("height", 1)
+                .style("stroke", "#008000")
+                .style("stroke-width", 2)
+                .style("fill", "none")
+                .style("cursor", "pointer")
+                .classed("toggle-element_NBF", true)
+                .on("click", handleClick_NBF);
+
+            legend.append("text")
+                .attr("x", width_1 + 390)
+                .attr("y", 30)
+                .text("NBF")
+                .style("font-size", "12px")
+                .style("font-weight", "bold")
+                .style("fill", "white")
+                .style("cursor", "pointer")
+                .classed("toggle-element_NBF", true)
+                .on("click", handleClick_NBF);
+
+            // ----------------------------------
+            // ADD BC_NBL TO LEGEND
+            // ----------------------------------
+
+            function handleClick_NBL() {
+                addToggleFunctionality(".line_BC_NBL", ".circle_BC_NBL", ".tooltip_BC_NBL");
+
+                let isGreyedOut_NBL = d3.select(this).classed("greyed-out_NBL");
+
+                if (isGreyedOut_NBL) {
+                    // Restore original brightness
+                    d3.selectAll(".toggle-element_NBL")
+                        .classed("greyed-out_NBL", false)
+                        .style("fill", "white")
+                        .style("opacity", 1);
+                } else {
+                    // Grey out both elements
+                    d3.selectAll(".toggle-element_NBL")
+                        .classed("greyed-out_NBL", true)
+                        .style("fill", "rgba(255, 255, 255)")
+                        .style("opacity", 0.3);
+                }
+            }
+
+            legend.append("rect")
+                .attr("x", width_1 + 430)
+                .attr("y", 25.5)
+                .attr("width", 30)
+                .attr("height", 1)
+                .style("stroke", "#00FF00")
+                .style("stroke-width", 2)
+                .style("fill", "none")
+                .style("cursor", "pointer")
+                .classed("toggle-element_NBL", true)
+                .on("click", handleClick_NBL);
+
+            legend.append("text")
+                .attr("x", width_1 + 470)
+                .attr("y", 30)
+                .text("NBL")
+                .style("font-size", "12px")
+                .style("font-weight", "bold")
+                .style("fill", "white")
+                .style("cursor", "pointer")
+                .classed("toggle-element_NBL", true)
+                .on("click", handleClick_NBL);
+
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+
+            // ----------------------------------
+            // ADD X/Y DOTTED LINES ON CHART
+            // ----------------------------------
+
+            // Adding "X-Y dotted lines"
+            let xline = d3.select("#body").append("g")
+                .append("line")
+                .attr("x1", 0)
+                .attr("y1", bodyHeight / 2)
+                .attr("x2", bodyWidth)
+                .attr("y2", bodyHeight / 2)
+                .attr("stroke-width", "1px")
+                .style("stroke", "white")
+                .style("stroke-dasharray", "5.5")
+                .style("opacity", 0)
+
+            let yline = d3.select("#body").append("g")
+                .append("line")
+                .attr("x1", 0)
+                .attr("y1", 0)
+                .attr("x2", 0)
+                .attr("y2", bodyHeight - 0.5)
+                .attr("stroke-width", "1px")
+                .style("stroke", "white")
+                .style("stroke-dasharray", "5.5")
+                .style("opacity", 0)
+
+            // ----------------------------------
+            // ADD CIRCLES TO THE CHART
+            // ----------------------------------
+
+            let circle_BTC = d3.select("#body").append("g")
+                .attr("class", "circle_BTC")
+                .append('circle')
+                .attr('r', 6.9)
+                .attr("fill", "url(#circle_gradient_BTC)")
+                .style("opacity", 0);
+
+            let circle_BC_BUB = d3.select("#body").append("g")
+                .attr("class", "circle_BC_BUB")
+                .append('circle')
+                .attr('r', 6)
+                .attr("fill", "url(#circle_gradient_BC_BUB)")
+                .style("opacity", 0);
+
+            let circle_BC_BLB = d3.select("#body").append("g")
+                .attr("class", "circle_BC_BLB")
+                .append('circle')
+                .attr('r', 6)
+                .attr("fill", "url(#circle_gradient_BC_BLB)")
+                .style("opacity", 0);
+
+            let circle_BC_NBU = d3.select("#body").append("g")
+                .attr("class", "circle_BC_NBU")
+                .append('circle')
+                .attr('r', 6)
+                .attr("fill", "url(#circle_gradient_BC_NBU)")
+                .style("opacity", 0);
+
+            let circle_BC_NBF = d3.select("#body").append("g")
+                .attr("class", "circle_BC_NBF")
+                .append('circle')
+                .attr('r', 6)
+                .attr("fill", "url(#circle_gradient_BC_NBF)")
+                .style("opacity", 0);
+
+            let circle_BC_NBL = d3.select("#body").append("g")
+                .attr("class", "circle_BC_NBL")
+                .append('circle')
+                .attr('r', 6)
+                .attr("fill", "url(#circle_gradient_BC_NBL)")
+                .style("opacity", 0);
+
+            // ----------------------------------
+            // ADD BTC CIRCLE GRADIENT
+            // ----------------------------------
+
+            let defs = d3.select("#body").append("defs");
+
+            let gradient_BTC = defs.append("radialGradient")
+                .attr("id", "circle_gradient_BTC")
+                .attr("cx", "50%")
+                .attr("cy", "50%")
+                .attr("r", "50%");
+            gradient_BTC.append("stop")
+                .attr("offset", "0%")
+                .style("stop-color", "#ccc")
+                .style("stop-opacity", 0.9);
+            gradient_BTC.append("stop")
+                .attr("offset", "100%")
+                .style("stop-color", "#0066c8")
+                .style("stop-opacity", 0.1);
+
+            // ----------------------------------
+            // ADD BC_BUB CIRCLE GRADIENT
+            // ----------------------------------
+
+            let gradient_BC_BUB = defs.append("radialGradient")
+                .attr("id", "circle_gradient_BC_BUB")
+                .attr("cx", "50%")
+                .attr("cy", "50%")
+                .attr("r", "50%");
+            gradient_BC_BUB.append("stop")
+                .attr("offset", "0%")
+                .style("stop-color", "#ccc")
+                .style("stop-opacity", 0.9);
+            gradient_BC_BUB.append("stop")
+                .attr("offset", "100%")
+                .style("stop-color", "#FF0000")
+                .style("stop-opacity", 0.1);
+
+            // ----------------------------------
+            // ADD BC_BLB CIRCLE GRADIENT
+            // ----------------------------------
+
+            let gradient_BC_BLB = defs.append("radialGradient")
+                .attr("id", "circle_gradient_BC_BLB")
+                .attr("cx", "50%")
+                .attr("cy", "50%")
+                .attr("r", "50%");
+            gradient_BC_BLB.append("stop")
+                .attr("offset", "0%")
+                .style("stop-color", "#ccc")
+                .style("stop-opacity", 0.9);
+            gradient_BC_BLB.append("stop")
+                .attr("offset", "100%")
+                // .style("stop-color", "#800000")
+                .style("stop-color", "#FF0000")
+                .style("stop-opacity", 0.1);
+
+            // ----------------------------------
+            // ADD BC_NBU CIRCLE GRADIENT
+            // ----------------------------------
+
+            let gradient_BC_NBU = defs.append("radialGradient")
+                .attr("id", "circle_gradient_BC_NBU")
+                .attr("cx", "50%")
+                .attr("cy", "50%")
+                .attr("r", "50%");
+            gradient_BC_NBU.append("stop")
+                .attr("offset", "0%")
+                .style("stop-color", "#ccc")
+                .style("stop-opacity", 0.9);
+            gradient_BC_NBU.append("stop")
+                .attr("offset", "100%")
+                // .style("stop-color", "#006400")
+                .style("stop-color", "#008000")
+                .style("stop-opacity", 0.1);
+
+            // ----------------------------------
+            // ADD BC_NBF CIRCLE GRADIENT
+            // ----------------------------------
+
+            let gradient_BC_NBF = defs.append("radialGradient")
+                .attr("id", "circle_gradient_BC_NBF")
+                .attr("cx", "50%")
+                .attr("cy", "50%")
+                .attr("r", "50%");
+            gradient_BC_NBF.append("stop")
+                .attr("offset", "0%")
+                .style("stop-color", "#ccc")
+                .style("stop-opacity", 0.9);
+            gradient_BC_NBF.append("stop")
+                .attr("offset", "100%")
+                .style("stop-color", "#008000")
+                .style("stop-opacity", 0.1);
+
+            // ----------------------------------
+            // ADD BC_NBL CIRCLE GRADIENT
+            // ----------------------------------
+
+            let gradient_BC_NBL = defs.append("radialGradient")
+                .attr("id", "circle_gradient_BC_NBL")
+                .attr("cx", "50%")
+                .attr("cy", "50%")
+                .attr("r", "50%");
+            gradient_BC_NBL.append("stop")
+                .attr("offset", "0%")
+                .style("stop-color", "#ccc")
+                .style("stop-opacity", 0.9);
+            gradient_BC_NBL.append("stop")
+                .attr("offset", "100%")
+                // .style("stop-color", "#00FF00")
+                .style("stop-color", "#008000")
+                .style("stop-opacity", 0.1);
+
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+
+            // ----------------------------------
+            // ADD TOOLTIP TO THE CHART
+            // ----------------------------------
+
+            // Adding tooltip box to the graph
+            let tooltip = body.append("g")
+                .attr("class", "tooltip")
+                .attr("transform", "translate(" + (bodyWidth - 140) + "," + (bodyHeight - 153) + ")")
+                .style("font-size", "12px")
+                .append("text")
+                // .attr("x", bodyWidth - 100)
+                // .attr("y", 30)
+                // .text("Values:")
+                .style("font-weight", "bold")
+                // .style("fill", "#ccc")
+                // .style("fill", "white")
+                // .style("fill", "#0066c8") // #0066c8 Navy blue
+                // .style("color", white)
+                .style("opacity", 0);
+
+            // Define the Date tooltip element
+            // const tooltip_Date = d3.select("#tooltip_Date");
+            let tooltip_Date = d3.select("#body").append("g")
+                .attr("class", "tooltip_Date")
+                .attr("transform", "translate(" + (bodyWidth - 140) + "," + (bodyHeight - 105) + ")")
+                .style("font-size", "12px")
+                .append('text')
+                .style("font-weight", "bold")
+                .style("fill", "#0066c8")
+                .style("opacity", 0);
+
+            let tooltip_BTC = d3.select("#body").append("g")
+                .attr("class", "tooltip_BTC")
+                .attr("transform", "translate(" + (bodyWidth - 140) + "," + (bodyHeight - 118) + ")")
+                .style("font-size", "12px")
+                .append('text')
+                .style("font-weight", "bold")
+                .style("fill", "#0066c8")
+                .style("opacity", 0);
+
+            let tooltip_BC_BUB = d3.select("#body").append("g")
+                .attr("class", "tooltip_BC_BUB")
+                .attr("transform", "translate(" + (bodyWidth - 140) + "," + (bodyHeight - 90.75) + ")")
+                .style("font-size", "12px")
+                .append('text')
+                .style("font-weight", "bold")
+                .style("fill", "#DF0000")
+                .style("opacity", 0)
+
+            let tooltip_BC_BLB = d3.select("#body").append("g")
+                .attr("class", "tooltip_BC_BLB")
+                .attr("transform", "translate(" + (bodyWidth - 140) + "," + (bodyHeight - 78.50) + ")")
+                .style("font-size", "12px")
+                .append('text')
+                .style("font-weight", "bold")
+                .style("fill", "#BF0000")
+                .style("opacity", 0);
+
+            let tooltip_BC_NBU = d3.select("#body").append("g")
+                .attr("class", "tooltip_BC_NBU")
+                .attr("transform", "translate(" + (bodyWidth - 140) + "," + (bodyHeight - 66.25) + ")")
+                .style("font-size", "12px")
+                .append('text')
+                .style("font-weight", "bold")
+                .style("fill", "#008000")
+                .style("opacity", 0);
+
+            let tooltip_BC_NBF = d3.select("#body").append("g")
+                .attr("class", "tooltip_BC_NBF")
+                .attr("transform", "translate(" + (bodyWidth - 140) + "," + (bodyHeight - 54.00) + ")")
+                .style("font-size", "12px")
+                .append('text')
+                .style("font-weight", "bold")
+                .style("fill", "#008600")
+                .style("opacity", 0);
+
+            let tooltip_BC_NBL = d3.select("#body").append("g")
+                .attr("class", "tooltip_BC_NBL")
+                .attr("transform", "translate(" + (bodyWidth - 140) + "," + (bodyHeight - 41.75) + ")")
+                .style("font-size", "12px")
+                .append('text')
+                .style("font-weight", "bold")
+                .style("fill", "#009600")
+                .style("opacity", 0);
+
+            //______________________________________
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+            // ----------------------------------
+            // CONFIGURE MOUSEMOVE FUNCTION
+            // ----------------------------------
+
+            const minY = 49.5;
+            const maxY = 536.5;
+            const minX = 50;
+            const maxX = bodyWidth + 50;
+            const firstDate = minDate_BTC;  // Sun Jul 18 2010 00:00:00 GMT+0200 (Central European Summer Time)
+            const lastDate = maxDate_BTC;   // Mon May 01 2023 00:00:00 GMT+0200 (Central European Summer Time)
+            const endDate = endDate_LR;     // Wed Jan 01 2025 00:00:00 GMT+0100 (Central European Standard Time)
+
+            d3.select("#chart").on("mousemove", function (event) {
+                let [x, y] = d3.pointer(event);
+
+                if (y < minY || y > maxY || x < minX || x > maxX) {
+                    xline.style("display", "none");
+                    yline.style("display", "none");
+                    circle_BTC.style("display", "none");
+                    circle_BC_BUB.style("display", "none");
+                    circle_BC_BLB.style("display", "none");
+                    circle_BC_NBU.style("display", "none");
+                    circle_BC_NBF.style("display", "none");
+                    circle_BC_NBL.style("display", "none");
+                    tooltip.style("display", "none");
+                    tooltip_Date.style("display", "none");
+                    tooltip_BTC.style("display", "none");
+                    tooltip_BC_BUB.style("display", "none");
+                    tooltip_BC_BLB.style("display", "none");
+                    tooltip_BC_NBU.style("display", "none");
+                    tooltip_BC_NBF.style("display", "none");
+                    tooltip_BC_NBL.style("display", "none");
+                }
+                else {
+                    xline.style("display", "block");
+                    yline.style("display", "block");
+                    circle_BTC.style("display", "block");
+                    circle_BC_BUB.style("display", "block");
+                    circle_BC_BLB.style("display", "block");
+                    circle_BC_NBU.style("display", "block");
+                    circle_BC_NBF.style("display", "block");
+                    circle_BC_NBL.style("display", "block");
+                    tooltip.style("display", "block");
+                    tooltip_Date.style("display", "block");
+                    tooltip_BTC.style("display", "block");
+                    tooltip_BC_BUB.style("display", "block");
+                    tooltip_BC_BLB.style("display", "block");
+                    tooltip_BC_NBU.style("display", "block");
+                    tooltip_BC_NBF.style("display", "block");
+                    tooltip_BC_NBL.style("display", "block");
+
+                    const newY = y - 293;
+                    const newX = x - 49;
+                    const tty = y + 12;
+                    const ttx = x + 30;
+
+                    xline.attr("transform", `translate(0,${newY})`).style("opacity", 0.1);
+                    yline.attr("transform", `translate(${newX},0)`).style("opacity", 0.1);
+
+                    //___________________________________________________________________________________________________________
+                    // ----------------------------------
+                    // Tooltip Date
+                    // ----------------------------------
+
+                    if (newX < xScale(firstDate) || newX > xScale(endDate)) {
+                        tooltip.style("display", "none");
+                        tooltip_Date.style("display", "none");
+                    }
+                    else {
+
+                        // TooltipDate
+                        try {
+                            const mouseDate = xScale.invert(newX);
+                            const bisectDate_LR = d3.bisector((d) => d.date_BC).right;
+                            const bcbubIndex = bisectDate_LR(LR_Data, mouseDate);
+
+                            // tooltip.html("Values:")
+                            //     .style("opacity", 1);
+                            tooltip_Date.html("Date: " + mouseDate.toDateString())
+                                .style("opacity", 1);
+
+                        } catch (error) {
+                            // Handle error as needed
+                        }
+                        // END 
+                    }
+                    //___________________________________________________________________________________________________________
+                    // ----------------------------------
+                    // BTC blue circle
+                    // ----------------------------------
+
+                    if (newX < xScale(firstDate) || newX > xScale(lastDate)) {
+                        circle_BTC.style("display", "none");
+                        tooltip_BTC.style("display", "none");
+                    }
+                    else {
+                        try {
+                            const mouseDate = xScale.invert(newX);
+                            const bisectDate = d3.bisector((d) => d.date).left;
+                            const btcIndex = bisectDate(btcData, mouseDate);
+                            const btcPrice = btcData[btcIndex].price.toFixed(2);
+
+                            // Tooltip BTC
+                            tooltip_BTC.html("BTC Price: " + btcPrice + " $")
+                                .style("opacity", 1);
+
+                            // Circle BTC
+                            circle_BTC
+                                .attr("transform", `translate(${newX},${yScale(btcData[btcIndex].price)})`)
+                                .style("opacity", 1);
+
+                        } catch (error) {
+                            // Handle error as needed
+                        }
+                    }
+
+                    //___________________________________________________________________________________________________________
+                    // ----------------------------------
+                    // BC_BUB Red circle
+                    // ----------------------------------
+
+                    if (newX < xScale(firstDate) || newX > xScale(endDate)) {
+                        circle_BC_BUB.style("display", "none");
+                        tooltip_BC_BUB.style("display", "none");
+                    }
+                    else {
+                        try {
+                            const mouseDate = xScale.invert(newX);
+                            const bisectDate_LR = d3.bisector((d) => d.date_BC).right;
+                            const bcbubIndex = bisectDate_LR(LR_Data, mouseDate);
+
+                            // Logarithmic interpolation
+                            const beforeData = LR_Data[bcbubIndex - 1];
+                            const currentData = LR_Data[bcbubIndex];
+
+                            const interpolatedX = newX;
+                            const interpolatedYLog = Math.log(beforeData.price_BC_BUB) +
+                                ((mouseDate - beforeData.date_BC) / (currentData.date_BC - beforeData.date_BC)) *
+                                (Math.log(currentData.price_BC_BUB) - Math.log(beforeData.price_BC_BUB));
+                            const interpolatedY = yScale(Math.exp(interpolatedYLog));
+
+                            // Tooltip BUB
+                            const bcbubPrice = Math.exp(interpolatedYLog).toFixed(0);
+                            tooltip_BC_BUB.html("BUB Price: " + bcbubPrice + " $").style("opacity", 1);
+
+                            // Circle BUB
+                            circle_BC_BUB.attr("transform", `translate(${interpolatedX},${interpolatedY})`).style("opacity", 1);
+
+                        } catch (error) {
+                            // Handle error as needed
+                        }
+                    }
+                    //___________________________________________________________________________________________________________
+                    // ----------------------------------
+                    // BC_BLB Red circle
+                    // ----------------------------------
+
+                    if (newX < xScale(firstDate) || newX > xScale(endDate)) {
+                        circle_BC_BLB.style("display", "none");
+                        tooltip_BC_BLB.style("display", "none");
+                    }
+                    else {
+                        try {
+                            const mouseDate = xScale.invert(newX);
+                            const bisectDate_LR = d3.bisector((d) => d.date_BC).right;
+                            const bcblbIndex = bisectDate_LR(LR_Data, mouseDate);
+
+                            // Logarithmic interpolation
+                            const beforeData = LR_Data[bcblbIndex - 1];
+                            const currentData = LR_Data[bcblbIndex];
+
+                            const interpolatedX = newX;
+                            const interpolatedYLog = Math.log(beforeData.price_BC_BLB) +
+                                ((mouseDate - beforeData.date_BC) / (currentData.date_BC - beforeData.date_BC)) *
+                                (Math.log(currentData.price_BC_BLB) - Math.log(beforeData.price_BC_BLB));
+                            const interpolatedY = yScale(Math.exp(interpolatedYLog));
+
+                            // Tooltip BLB
+                            const bcblbPrice = Math.exp(interpolatedYLog).toFixed(0);
+                            tooltip_BC_BLB.html("BLB Price: " + bcblbPrice + " $").style("opacity", 1);
+
+                            // Circle BLB
+                            circle_BC_BLB.attr("transform", `translate(${interpolatedX},${interpolatedY})`).style("opacity", 1);
+
+                        } catch (error) {
+                            // Handle error as needed
+                        }
+                    }
+                    // ___________________________________________________________________________________________________________
+                    // ----------------------------------
+                    // BC_NBU Red circle
+                    // ----------------------------------
+
+                    if (newX < xScale(firstDate) || newX > xScale(endDate)) {
+                        circle_BC_NBU.style("display", "none");
+                        tooltip_BC_NBU.style("display", "none");
+                    }
+                    else {
+                        try {
+                            const mouseDate = xScale.invert(newX);
+                            const bisectDate_LR = d3.bisector((d) => d.date_BC).right;
+                            const bcnbuIndex = bisectDate_LR(LR_Data, mouseDate);
+
+                            // Logarithmic interpolation
+                            const beforeData = LR_Data[bcnbuIndex - 1];
+                            const currentData = LR_Data[bcnbuIndex];
+
+                            const interpolatedX = newX;
+                            const interpolatedYLog = Math.log(beforeData.price_BC_NBU) +
+                                ((mouseDate - beforeData.date_BC) / (currentData.date_BC - beforeData.date_BC)) *
+                                (Math.log(currentData.price_BC_NBU) - Math.log(beforeData.price_BC_NBU));
+                            const interpolatedY = yScale(Math.exp(interpolatedYLog));
+
+                            // Tooltip NBU
+                            const bcnbuPrice = Math.exp(interpolatedYLog).toFixed(0);
+                            tooltip_BC_NBU.html("NBU Price: " + bcnbuPrice + " $").style("opacity", 1);
+
+                            // Circle NBU
+                            circle_BC_NBU.attr("transform", `translate(${interpolatedX},${interpolatedY})`).style("opacity", 1);
+
+                        } catch (error) {
+                            // Handle error as needed
+                        }
+                    }
+                    // ___________________________________________________________________________________________________________
+                    // ----------------------------------
+                    // BC_NBF Red circle
+                    // ----------------------------------
+
+                    if (newX < xScale(firstDate) || newX > xScale(endDate)) {
+                        circle_BC_NBF.style("display", "none");
+                        tooltip_BC_NBF.style("display", "none");
+                    }
+                    else {
+                        try {
+                            const mouseDate = xScale.invert(newX);
+                            const bisectDate_LR = d3.bisector((d) => d.date_BC).right;
+                            const bcnbfIndex = bisectDate_LR(LR_Data, mouseDate);
+
+                            // Logarithmic interpolation
+                            const beforeData = LR_Data[bcnbfIndex - 1];
+                            const currentData = LR_Data[bcnbfIndex];
+
+                            const interpolatedX = newX;
+                            const interpolatedYLog = Math.log(beforeData.price_BC_NBF) +
+                                ((mouseDate - beforeData.date_BC) / (currentData.date_BC - beforeData.date_BC)) *
+                                (Math.log(currentData.price_BC_NBF) - Math.log(beforeData.price_BC_NBF));
+                            const interpolatedY = yScale(Math.exp(interpolatedYLog));
+
+                            // Tooltip NBF
+                            const bcnbfPrice = Math.exp(interpolatedYLog).toFixed(0);
+                            tooltip_BC_NBF.html("NBF Price: " + bcnbfPrice + " $").style("opacity", 1);
+
+                            // Circle NBF
+                            circle_BC_NBF.attr("transform", `translate(${interpolatedX},${interpolatedY})`).style("opacity", 1);
+
+                        } catch (error) {
+                            // Handle error as needed
+                        }
+                    }
+                    // ___________________________________________________________________________________________________________
+                    // ----------------------------------
+                    // BC_NBL Red circle
+                    // ----------------------------------
+
+                    if (newX < xScale(firstDate) || newX > xScale(endDate)) {
+                        circle_BC_NBL.style("display", "none");
+                        tooltip_BC_NBL.style("display", "none");
+                    }
+                    else {
+                        try {
+                            const mouseDate = xScale.invert(newX);
+                            const bisectDate_LR = d3.bisector((d) => d.date_BC).right;
+                            const bcnblIndex = bisectDate_LR(LR_Data, mouseDate);
+
+                            // Logarithmic interpolation
+                            const beforeData = LR_Data[bcnblIndex - 1];
+                            const currentData = LR_Data[bcnblIndex];
+
+                            const interpolatedX = newX;
+                            const interpolatedYLog = Math.log(beforeData.price_BC_NBL) +
+                                ((mouseDate - beforeData.date_BC) / (currentData.date_BC - beforeData.date_BC)) *
+                                (Math.log(currentData.price_BC_NBL) - Math.log(beforeData.price_BC_NBL));
+                            const interpolatedY = yScale(Math.exp(interpolatedYLog));
+
+                            // Tooltip NBL
+                            const bcnblPrice = Math.exp(interpolatedYLog).toFixed(0);
+                            tooltip_BC_NBL.html("NBL Price: " + bcnblPrice + " $").style("opacity", 1);
+
+                            // Circle NBL
+                            circle_BC_NBL.attr("transform", `translate(${interpolatedX},${interpolatedY})`).style("opacity", 1);
+
+                        } catch (error) {
+                            // Handle error as needed
+                        }
+                    }
+
+                    //___________________________________________________________________________________________________________
+
+                }
+            });
+
+        }
+    </script>
+</body>
+
+</html>

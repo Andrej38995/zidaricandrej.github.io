@@ -1,0 +1,892 @@
+
+/* background-color: rgba(17, 24, 39, 255); LIGHT*/
+/* background-color: rgba(11, 15, 25, 255); DARK */
+
+.main_2 {
+    /* background-color: orange; */
+    background-color: rgb(100, 0, 0, 0.338);
+    height: 500px;
+    width: 1024px;
+    text-align: center;
+    padding-top: 10px;
+    /* margin-top: 80px;
+    padding is inside of a div, margin is a div */
+    /* padding-left: 240px;
+    padding-right: 240px; */
+    margin-top: 200px; /* add some margin to show the effect */
+}
+
+footer {
+    background-color: rgb(0, 0, 0, 0.5);
+    /* background-color: greenyellow; */
+    /* height: 100px; */
+    /*width: 1024px;*/
+}
+
+/* When designing a class, a period "." goes up front */
+
+
+
+h1 {
+    font-size: 70px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    /* text-align: center; already in heade*/
+    /* Crypto Chemistry header */
+}
+main p {
+    font-size: 18px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    /* TradingView Charts for stocks and crypto text*/
+}
+footer p {
+    /* background-color: rgb(0, 0, 0, 0.5); */
+    color: rgb(198, 198, 198, 1);
+    text-align: center;
+    font-size: 12px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#tradingview_94e9a {
+    width: 1024px;
+    height: 540px;
+    object-position: center;
+}
+
+/*HTML5 structure tags:
+    <article> - Defines an article in a document
+    <aside> - Defines content aside from the page content
+    <bdl> - Isolates a part of text that might be formatted in a different direction
+    <details> - Defines additional details that the user can view or hide
+    <figcaption> - Defines a caption for a <figure> element
+    <figure> - Defines self-contained content
+    <footer> - Defines a footer for a document or section
+    <header> - Defines a header for a document or section
+    <main> - Defines the main content of a document
+    <mark> - Defines marked/highlighted text
+    <meter> - Defines a scalar measurment within a known range (a gauge)
+    <nav> - Defines navigation links
+    <progress> - Represents the progress of a task
+    <rp> - Defines what to show in browser that do not support ruby annotiations
+    <section> - Defines a section in a document
+    <summary> - Defines a visible heading for a <details> element
+    <time> - Defines a date/time
+    */
+
+/* CSS Style for buttons */
+
+.button_left_always_active {
+    align-items: center;
+    appearance: none;
+    background-color: rgba(237, 242, 247, 0.08);
+    border-bottom-color: rgb(45, 55, 72);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 0px;
+    border-bottom-style: solid;
+    border-bottom-width: 0.8px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(45, 55, 72);
+    border-left-style: solid;
+    border-left-width: 0.8px;
+    border-right-color: rgb(45, 55, 72);
+    border-right-style: solid;
+    border-right-width: 0.8px;
+    border-top-color: rgb(45, 55, 72);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 0px;
+    border-top-style: solid;
+    border-top-width: 0.8px;
+    box-sizing: border-box;
+    color: rgba(237, 242, 247);
+    cursor: pointer;
+    direction: ltr;
+    /* display: flex; */
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-size: 14px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-weight: 400;
+    /* height: 35px; */
+    justify-content: center;
+    letter-spacing: normal;
+    line-height: 24.5px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    outline-color: rgba(237, 242, 247);
+    outline-style: none;
+    outline-width: 0px;
+    padding-bottom: 6px;
+    /*11*/
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 6px;
+    /*11*/
+    position: relative;
+    text-align: center;
+    text-decoration-color: rgba(237, 242, 247);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    text-indent: 0px;
+    text-rendering: auto;
+    text-shadow: none;
+    text-size-adjust: 100%;
+    text-transform: capitalize;
+    user-select: none;
+    vertical-align: middle;
+    /* width: 87.3375px; */
+    word-spacing: 0px;
+    writing-mode: horizontal-tb;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* margin: 0.5px; */
+}
+.button_left {
+    /*<-- LAYOUT -->*/
+    align-items: center;
+    box-sizing: border-box;
+    /* display: flex; */
+    justify-content: center;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    padding-bottom: 6px;
+    /*11*/
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 6px;
+    /*11*/
+    position: relative;
+    /* width: 87.3375px; */
+    /*<-- TEXT -->*/
+    direction: ltr;
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-size: 14px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 24.5px;
+    text-align: center;
+    text-decoration-color: rgba(156, 163, 175);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    text-indent: 0px;
+    text-shadow: none;
+    text-size-adjust: 100%;
+    text-transform: capitalize;
+    vertical-align: middle;
+    word-spacing: 0px;
+    /*<-- APPEARANCE -->*/
+    color: rgba(156, 163, 175);
+    background-color: rgba(0, 0, 0, 0.1);
+    border-bottom-color: rgb(45, 55, 72);
+    border-bottom-style: solid;
+    border-bottom-width: 0.8px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(45, 55, 72);
+    border-left-style: solid;
+    border-left-width: 0.8px;
+    border-right-color: rgb(45, 55, 72);
+    border-right-style: solid;
+    border-right-width: 0.8px;
+    border-top-color: rgb(45, 55, 72);
+    border-top-style: solid;
+    border-top-width: 0.8px;
+    cursor: pointer;
+    outline-color: rgba(156, 163, 175);
+    outline-style: none;
+    outline-width: 0px;
+    /*<-- OTHER -->*/
+    text-rendering: auto;
+    writing-mode: horizontal-tb;
+    appearance: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 0px;
+    user-select: none;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* margin: 0.5px; */
+}
+.button_left:hover {
+    text-decoration-color: rgba(237, 242, 247);
+    color: rgba(237, 242, 247);
+    background-color: rgba(237, 242, 247, 0.08);
+    /* margin: 0.5px; */
+}
+.button_left:active {
+    text-decoration-color: rgba(237, 242, 247);
+    color: rgba(237, 242, 247);
+    background-color: rgba(237, 242, 247, 0.08);
+    /* margin: 0.5px; */
+}
+
+.button_middle_always_active {
+    align-items: center;
+    appearance: none;
+    background-color: rgba(237, 242, 247, 0.08);
+    border-bottom-color: rgb(45, 55, 72);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-style: solid;
+    border-bottom-width: 0.8px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(45, 55, 72);
+    border-left-style: solid;
+    border-left-width: 0.8px;
+    border-right-color: rgb(45, 55, 72);
+    border-right-style: solid;
+    border-right-width: 0.8px;
+    border-top-color: rgb(45, 55, 72);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top-style: solid;
+    border-top-width: 0.8px;
+    box-sizing: border-box;
+    color: rgba(237, 242, 247);
+    cursor: pointer;
+    direction: ltr;
+    /* display: flex; */
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-size: 14px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-weight: 400;
+    /* height: 35px; */
+    justify-content: center;
+    letter-spacing: normal;
+    line-height: 24.5px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    outline-color: rgba(237, 242, 247);
+    outline-style: none;
+    outline-width: 0px;
+    padding-bottom: 6px;
+    /*11*/
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 6px;
+    /*11*/
+    position: relative;
+    text-align: center;
+    text-decoration-color: rgba(237, 242, 247);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    text-indent: 0px;
+    text-rendering: auto;
+    text-shadow: none;
+    text-size-adjust: 100%;
+    text-transform: capitalize;
+    user-select: none;
+    vertical-align: middle;
+    /* width: 87.3375px; */
+    word-spacing: 0px;
+    writing-mode: horizontal-tb;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* margin: 0.5px; */
+}
+.button_middle {
+    /*<-- LAYOUT -->*/
+    align-items: center;
+    box-sizing: border-box;
+    /* display: flex; */
+    justify-content: center;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    padding-bottom: 6px;
+    /*11*/
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 6px;
+    /*11*/
+    position: relative;
+    /* width: 87.3375px; */
+    /*<-- TEXT -->*/
+    direction: ltr;
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-size: 14px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 24.5px;
+    text-align: center;
+    text-decoration-color: rgba(156, 163, 175);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    text-indent: 0px;
+    text-shadow: none;
+    text-size-adjust: 100%;
+    text-transform: capitalize;
+    vertical-align: middle;
+    word-spacing: 0px;
+    /*<-- APPEARANCE -->*/
+    color: rgba(156, 163, 175);
+    background-color: rgba(0, 0, 0, 0.10);
+    /* background-color: black; */
+    border-bottom-color: rgb(45, 55, 72);
+    border-bottom-style: solid;
+    border-bottom-width: 0.8px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(45, 55, 72);
+    border-left-style: solid;
+    border-left-width: 0.8px;
+    border-right-color: rgb(45, 55, 72);
+    border-right-style: solid;
+    border-right-width: 0.8px;
+    border-top-color: rgb(45, 55, 72);
+    border-top-style: solid;
+    border-top-width: 0.8px;
+    cursor: pointer;
+    outline-color: rgba(156, 163, 175);
+    outline-style: none;
+    outline-width: 0px;
+    /*<-- OTHER -->*/
+    text-rendering: auto;
+    writing-mode: horizontal-tb;
+    appearance: none;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    user-select: none;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* margin: 0.5px; */
+    overflow: hidden;
+    box-sizing: border-box;
+
+}
+.button_middle:hover {
+    text-decoration-color: rgba(237, 242, 247);
+    color: rgba(237, 242, 247);
+    background-color: rgba(237, 242, 247, 0.08);
+    /* margin: 0.5px; */
+}
+.button_middle:active {
+    text-decoration-color: rgba(237, 242, 247);
+    color: rgba(237, 242, 247);
+    background-color: rgba(237, 242, 247, 0.08);
+    /* margin: 0.5px; */
+}
+
+.button_right_always_active {
+    align-items: center;
+    appearance: none;
+    background-color: rgba(237, 242, 247, 0.08);
+    border-bottom-color: rgb(45, 55, 72);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 8px;
+    border-bottom-style: solid;
+    border-bottom-width: 0.8px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(45, 55, 72);
+    border-left-style: solid;
+    border-left-width: 0.8px;
+    border-right-color: rgb(45, 55, 72);
+    border-right-style: solid;
+    border-right-width: 0.8px;
+    border-top-color: rgb(45, 55, 72);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 8px;
+    border-top-style: solid;
+    border-top-width: 0.8px;
+    box-sizing: border-box;
+    color: rgba(237, 242, 247);
+    cursor: pointer;
+    direction: ltr;
+    /* display: flex; */
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-size: 14px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-weight: 400;
+    /* height: 35px; */
+    justify-content: center;
+    letter-spacing: normal;
+    line-height: 24.5px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    outline-color: rgba(237, 242, 247);
+    outline-style: none;
+    outline-width: 0px;
+    padding-bottom: 6px;
+    /*11*/
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 6px;
+    /*11*/
+    position: relative;
+    text-align: center;
+    text-decoration-color: rgba(237, 242, 247);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    text-indent: 0px;
+    text-rendering: auto;
+    text-shadow: none;
+    text-size-adjust: 100%;
+    text-transform: capitalize;
+    user-select: none;
+    vertical-align: middle;
+    /* width: 87.3375px; */
+    word-spacing: 0px;
+    writing-mode: horizontal-tb;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* margin: 0.5px; */
+}
+.button_right {
+    /*<-- LAYOUT -->*/
+    align-items: center;
+    box-sizing: border-box;
+    /* display: flex; */
+    justify-content: center;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    padding-bottom: 6px;
+    /*11*/
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 6px;
+    /*11*/
+    position: relative;
+    /* width: 87.3375px; */
+    /*<-- TEXT -->*/
+    direction: ltr;
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-size: 14px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 24.5px;
+    text-align: center;
+    text-decoration-color: rgba(156, 163, 175);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    text-indent: 0px;
+    text-shadow: none;
+    text-size-adjust: 100%;
+    text-transform: capitalize;
+    vertical-align: middle;
+    word-spacing: 0px;
+    /*<-- APPEARANCE -->*/
+    color: rgba(156, 163, 175);
+    background-color: rgba(0, 0, 0, 0.1);
+    border-bottom-color: rgb(45, 55, 72);
+    border-bottom-style: solid;
+    border-bottom-width: 0.8px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(45, 55, 72);
+    border-left-style: solid;
+    border-left-width: 0.8px;
+    border-right-color: rgb(45, 55, 72);
+    border-right-style: solid;
+    border-right-width: 0.8px;
+    border-top-color: rgb(45, 55, 72);
+    border-top-style: solid;
+    border-top-width: 0.8px;
+    cursor: pointer;
+    outline-color: rgba(156, 163, 175);
+    outline-style: none;
+    outline-width: 0px;
+    /*<-- OTHER -->*/
+    text-rendering: auto;
+    writing-mode: horizontal-tb;
+    appearance: none;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 8px;
+    user-select: none;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* margin: 0.5px; */
+}
+.button_right:hover {
+    text-decoration-color: rgba(237, 242, 247);
+    color: rgba(237, 242, 247);
+    background-color: rgba(237, 242, 247, 0.08);
+    /* margin: 0.5px; */
+}
+.button_right:active {
+    text-decoration-color: rgba(237, 242, 247);
+    color: rgba(237, 242, 247);
+    background-color: rgba(237, 242, 247, 0.08);
+    /* margin: 0.5px; */
+}
+
+/* Styles for head and navigation bar:  */
+
+body {
+    /* background-color: rgba(17, 24, 39, 255); */
+    /* background-color: rgba(0, 0, 0, 0.338); */
+    /* background-color: rgba(0, 0, 0, 0.662); */
+    background-color: rgba(11, 15, 25, 100);
+    box-sizing: border-box;
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: center; */
+}
+.Head_Div {
+    width: 100%;
+    height: 100px;
+    margin-top: 0px;
+}
+.Head_Logo {
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+    vertical-align: center;
+}
+.Channel_logo {
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+}
+.Head_Text {
+    width: 100%;
+    display: inline-block;
+    vertical-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+.Channel_text {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 60px;
+    text-align: center;
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    vertical-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+
+.navbar_div {
+    box-sizing: border-box;
+    
+}
+.navbar_main {
+    /* background-color: rgb(0, 0, 0, 0.338); */
+    background-color: rgba(17, 24, 39, 255);
+    /* background-color: rgba(17, 24, 39, 200); */
+    /* background-color: rgba(137, 242, 247, 0.00); */
+    text-align: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    vertical-align: middle;
+    border: 1px;
+    position: relative;
+    z-index: 2;
+    border-color:rgb(45, 55, 72);
+    /* border-radius: 50px; */
+    border-radius: 15px;
+    border-style: solid;
+    display: flex ;
+    flex-wrap: wrap;
+    /* flex: content; */
+    justify-content: center;
+    
+}
+.navbar_second {
+    /* text-align: center; */
+    /* padding-top: 7px;
+    margin-top: 7px; */
+    /* vertical-align: middle; */
+    /* border: 1px; */
+    /* position: relative; */
+    /* border-top-color: rgba(45, 55, 72, 0.2); */
+    /* border-bottom-color:transparent; */
+    /* border-left-color: transparent; */
+    /* border-right-color: transparent; */
+    /* border-style: solid; */
+    /* border-radius: 100px; */
+    display: flex ;
+    flex-wrap: wrap;
+    /* flex: content; */
+    justify-content: center;
+    flex-basis: 100%;
+}
+.navbar_line {
+     flex-basis: 100%;
+     align-items: center;
+     box-sizing: border-box;
+     justify-content: center;
+     margin-top: 14px;
+     margin-bottom: 14px;
+     margin-left: 0px;
+     margin-right: 0px;
+     /* Margin top/bottom = 6.5px means bottom of first row becames top of buttons of next one; */
+     /* Middle button top/bottom padding is 6px; */
+     /* Navbar top/bottom padding is 14px */
+     padding-top: 0px;
+     padding-bottom: 0px;
+     padding-left: 11px;
+     padding-right: 11px;
+     position:unset;
+     color: rgb(0, 0, 0, 0);
+     background-color: rgb(0, 0, 0, 0);
+     border-bottom-color: rgb(0, 0, 0, 0);
+     border-bottom-style: solid;
+     border-bottom-width: 0.8px;
+     border-image-outset: 0;
+     border-image-repeat: stretch;
+     border-image-slice: 100%;
+     border-image-source: none;
+     border-image-width: 1;
+     border-left-color: rgb(0, 0, 0, 0);
+     border-left-style: solid;
+     border-left-width: 0.8px;
+     border-right-color: rgb(0, 0, 0, 0);
+     border-right-style: solid;
+     border-right-width: 0.8px;
+     border-top-color: rgb(0, 0, 0, 0);
+     border-top-style: solid;
+     border-top-width: 0.8px;
+     /* cursor: pointer; */
+     outline-color: rgba(0, 0, 0, 0);
+     outline-style: none;
+     outline-width: 0px;
+     /*<-- OTHER -->*/
+     text-rendering: auto;
+     writing-mode: horizontal-tb;
+     appearance: none;
+     border-bottom-left-radius: 0px;
+     border-bottom-right-radius: 0px;
+     border-top-left-radius: 0px;
+     border-top-right-radius: 0px;
+     user-select: none;
+     -webkit-box-align: center;
+     -webkit-box-pack: center;
+     -webkit-font-smoothing: antialiased;
+     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+     /* SETTINGS */
+     overflow: hidden;
+     box-sizing: border-box;
+     content:'';
+     color: rgb(45, 55, 72);
+     display: flex;
+     flex:none;
+     flex-wrap: nowrap;
+     display: flex ;
+     justify-content: center;
+     position:relative;
+     width:100%;
+     border-top-color: rgba(45, 55, 72, 0.35);
+     border-bottom-color:transparent;
+     border-left-color: transparent;
+     border-right-color: transparent;
+     border-style: solid;
+}
+
+
+/* --- MAIN DIV --- */
+
+.outside_div {
+    box-sizing: border-box;
+    /* background-color: rgb(0, 0, 0, 0.338); */
+    /* padding-top: 1px; */
+    /* padding-bottom: 1px; */
+    /* padding-left: 1px; */
+    /* padding-right: 1px; */
+    margin-top: 14px;
+    /* align-items: center; */
+    border-style: solid;
+    /* border-color: rgb(0, 0, 0, 0.338); */
+    border-color: rgb(45, 55, 72);;
+    border-width: 1px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    /* display: flex ; */
+    /* flex-wrap: wrap; */
+    /* flex: content; */
+    /* justify-content: center; */
+}
+
+
+.main_div {
+    color: white;
+    /* text-size-adjust: 100px; */
+    /* text-align: center; */
+    background-color: rgba(17, 24, 39, 255);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-style: solid;
+    /* border-color: rgb(0, 0, 0, 0.338); */
+    border-width: 0px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    /* display: flex ; */
+    /* flex-wrap: wrap; */
+    /* flex: content; */
+    /* justify-content: center; */
+}
+
+.header {
+    text-align: left;
+    font-size: 50px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+.description {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-bottom: 25px;
+}
+
+.footer {
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    /* text-size-adjust: 100px; */
+    /* text-align: center; */
+    background-color: rgba(3, 6, 11, 0.466);
+    /* background-color: rgba(17, 24, 39, 255); */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-style: solid;
+    /* border-color: rgb(0, 0, 0, 0.338); */
+    border-width: 0px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-sizing: border-box;
+    margin-top: 13px;
+    /* align-items: center; */
+    border-style: solid;
+    border-color: rgba(45, 55, 72, 0.385);
+    /* border-color: rgb(45, 55, 72);; */
+    border-width: 1px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+/* CHART STYLES */
+
+.chart_div {
+    width: 100%;
+    display: flex ;
+    flex-wrap: wrap;
+    /* flex: content; */
+    justify-content: center;
+}
+
+.chart {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    /* !!! 1000x618 is a golden ratio !!! */
+    /* !!! 1280x720 is a 720p resolution !!! */
+    /* !!! 1140x670 is the middle resolution !!! */
+    /* !!! 1084x670 is the middle golden ratio resolution !!! */
+    width: 1084px;
+    height: 670px;
+    object-position: center;
+    display: flex ;
+    flex-wrap: wrap;
+    /* flex: content; */
+    justify-content: center;
+}
+
+.tradingview-widget-container {
+    width: 1280px;
+    height: 720px;
+    object-position: center;
+}
+
+
+
+/* OTHER STYLES */

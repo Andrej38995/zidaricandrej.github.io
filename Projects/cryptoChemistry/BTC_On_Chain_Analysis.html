@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Chemistry</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="myscript.js"></script>
+</head>
+
+<body>
+    <!-- HEADER-START -->
+    <div class="Head_Div">
+        <div class="Head_Logo">
+            <img class="Channel_logo" src="images/Website_logo.png">
+        </div>
+        <div class="Head_Text">
+            <p class="Channel_text">Crypto Chemistry</p>
+        </div>
+    </div>
+    <!-- HEADER-END -->
+
+    <!-- NAVBAR-START -->
+    <div class="navbar_div">
+        <div class="navbar_main">
+            <div class="navbar_second">
+                <button class="button_left" onclick="goToPage('index.html')">HOME-PAGE</button>
+                <button class="button_middle_always_active" onclick="goToPage('Bitcoin(BTC).html')">BITCOIN (BTC)</button>
+                <button class="button_middle" onclick="goToPage('ETH/Ethereum(ETH).html')"> ETHEREUM (ETH) </button>
+                <button class="button_middle" onclick="goToPage('ALTS/SOL.html')"> ALTCOINS </button>
+                <button class="button_middle" onclick="goToPage('STOCKS/SP500.html')"> STOCK-MARKET </button>
+                <button class="button_middle" onclick="goToPage('MACRO/US_GDP.html')"> MACRO-ECONOMICS </button>
+                <button class="button_right" onclick="goToPage('SPONSORS/SPONSORS.html')"> SPONSORS </button>
+            </div>
+
+            <div class="navbar_second">
+                <!-- <button class="button_blank"> -----</button> -->
+                <button class="navbar_line"> </button>
+            </div>
+
+            <div class="navbar_second">
+                <button class="button_left" onclick="goToPage('Bitcoin(BTC).html')"> BITCOIN PRICE </button>
+                <button class="button_middle" onclick="goToPage('Logarithmic_Regression.html')">LOGARITHMIC REGRESSION</button>
+                <button class="button_middle" onclick="goToPage('Total_market_cap_BTC.html')"> TOTAL MARKET CAP </button>
+                <button class="button_middle" onclick="goToPage('Bitcoin_Dominance.html')"> BTC DOMINANCE </button>
+                <button class="button_middle_always_active" onclick="goToPage('BTC_On_Chain_Analysis.html')"> ON-CHAIN ANALYSIS </button>
+                <button class="button_middle" onclick="goToPage('BTC_Year_To_Date_ROI.html')"> YEAR-TO-DATE ROI </button>
+                <button class="button_right" onclick="goToPage('BTC_Rainbow_Chart.html')"> RAINBOW CHART </button>
+            </div>
+        </div>
+    </div>
+    <!-- NAVBAR-END -->
+
+    <!-- MAIN-START -->
+    <main>
+        <div class="outside_div">
+            <!-- A black outside border div -->
+            <div class="main_div">
+                <header class="header">
+                    Total amount of coins transferred on-chain
+                </header>
+
+                <div class="description">
+                    Bitcoin transactions involve the transfer of a specified amount of Bitcoin from one address (sender's wallet) to another address (recipient's wallet).
+                    <br>
+                    These transactions are recorded and verified by network participants known as miners, who add the transaction details to blocks on the blockchain.
+                    <br>
+                </div>
+
+                <!-- TradingView Widget BEGIN -->
+                <div class="chart_div">
+                    <div class="chart">
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "autosize": true,
+                                    "symbol": "GLASSNODE:BTC_TOTALVOLUME",
+                                    "interval": "1W",
+                                    // "range": "24M",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "enable_publishing": false,
+                                    "withdateranges": true,
+                                    "enabled_features": ["hide_resolution_in_legend"],
+                                    "hide_side_toolbar": false,
+                                    "allow_symbol_change": false,
+                                    "save_image": false,
+                                    "details": false,
+                                    "hotlist": false,
+                                    "calendar": false,
+                                    "show_popup_button": false,
+                                    "hidevolume": true,
+                                }
+                            );
+                        </script>
+                    </div>
+                </div>
+                <!-- TradingView Widget END -->
+
+                <div class="navbar_second">
+                    <!-- <button class="button_blank"> -----</button> -->
+                    <button class="navbar_line"> </button>
+                </div>
+
+                <header class="header">
+                    Total amount of fees in USD paid to miners
+                </header>
+
+                <div class="description">
+                    The total amount of fees in USD paid to miners for Bitcoin refers to the cumulative sum of transaction fees that have been paid by users for including their transactions in the Bitcoin blockchain.
+                    <br>
+                    These fees are collected by miners as a reward for including and validating transactions in a new block.
+                    <br>
+                </div>
+
+                <!-- TradingView Widget BEGIN -->
+                <div class="chart_div">
+                    <div class="chart">
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "autosize": true,
+                                    "symbol": "GLASSNODE:BTC_TOTALTXFEESUSD",
+                                    "interval": "1W",
+                                    // "range": "24M",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "enable_publishing": false,
+                                    "withdateranges": true,
+                                    "enabled_features": ["hide_resolution_in_legend"],
+                                    "hide_side_toolbar": false,
+                                    "allow_symbol_change": false,
+                                    "save_image": false,
+                                    "details": false,
+                                    "hotlist": false,
+                                    "calendar": false,
+                                    "show_popup_button": false,
+                                    "hidevolume": true,
+                                }
+                            );
+                        </script>
+                    </div>
+                </div>
+                <!-- TradingView Widget END -->
+
+                <div class="description">
+                    The peaks in the total amount of fees paid to miners in USD in 2017 and 2021 signify the tops in the bitcoin market cycle, 
+                    <br>
+                    while in 2023, the peak is expected to be attributed to the launch of ordinal-based bitcoin smart contracts.
+                    <br>
+                </div>
+        
+
+
+
+
+
+            </div>
+        </div>
+
+    </main>
+    <!-- MAIN-END -->
+
+    <!-- FOOTER-START -->
+    <div class="footer">
+        The information and data on Cryptochemistry.net, including tradingview charts, 
+        are for informational purposes only and should not be considered as financial or investment advice.
+        <br>
+        The website author and entity behind Cryptochemistry.net do not endorse, recommend,
+        or guarantee any particular investment strategy, product, service, or provider.
+        <br>
+        The information may not be accurate, complete, timely, or reliable,
+        and users should conduct their own research and seek professional advice.
+        <br>
+        By using Cryptochemistry.net and accessing the information and data presented on this website,
+        users acknowledge and agree to the terms and conditions of this disclaimer.
+
+        <p>
+            Co. Crypto Chemistry - Copyright 2023©
+        </p>
+    </div>
+    <!-- FOOTER-END -->
+</body>
+
+</html>
